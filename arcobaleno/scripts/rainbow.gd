@@ -18,7 +18,9 @@ func _area_manager(event: InputEvent, area: Area2D):
 			if item is Item and not item.is_dragged():
 				if GameLogic.is_correct(item, area):
 					print(" --> "+str(item.get_name())+" | "+str(area.get_name()))
-					item.get_node("Hitbox/AreaShape").disabled = true
+					item.disable_area()
+				else:
+					item.reset()
 
 
 func _on_red_area_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:

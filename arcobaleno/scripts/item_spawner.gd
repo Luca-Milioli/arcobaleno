@@ -38,15 +38,10 @@ func spawn():
 	item.position.x = 1200
 	tween.tween_property(item, "position", spawn_position - Vector2(25, 0), 0.8).set_delay(0.12 * self.spawned_items).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(item, "position", spawn_position, 0.3).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
-	#item.position = spawn_position
-	
-	# 86
 	
 	# list is already shuffled
 	var img = self.images.pop_back()
-	item.set_image(img)
-	item.set_name(img.get_basename().get_file())
-	#print("ITEM: "+str(item.position) + " | "+str(item.get_image()))
+	item.setup(img, spawn_position)
 	add_child(item)
 	
 func spawn_all_possible():

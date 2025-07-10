@@ -4,11 +4,27 @@ class_name Item
 
 var dragging : bool
 var drag_offset : Vector2
+var start_pos : Vector2
 var _fruit: String
 var _group: GameLogic.GROUPS
 
 func _ready() -> void:
 	self.dragging = false
+
+func setup(image: String, spawn_position: Vector2):
+	set_image(image)
+	set_name(image.get_basename().get_file())
+	if(image.get_basename().get_file()[0] <= "c"):
+		set_group(0)
+	elif(image.get_basename().get_file()[0] <= "f"):
+		set_group(1)
+	elif(image.get_basename().get_file()[0] <= "m"):
+		set_group(2)
+	elif(image.get_basename().get_file()[0] <= "p"):
+		set_group(3)
+	else:
+		set_group(4)
+	self.start_pos = spawn_position
 
 func set_group(group: GameLogic.GROUPS) -> void:
 	self._group = group
@@ -30,6 +46,12 @@ func get_image():
 
 func is_dragged():
 	return self.dragging
+
+func disable_area():
+	$Hitbox/AreaShape.disabled = true
+
+func reset():
+	self.position = start_pos
 	
 func _on_hitbox_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
