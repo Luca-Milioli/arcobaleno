@@ -16,7 +16,7 @@ func _area_manager(event: InputEvent, area: Area2D):
 		for overlapping in area.get_overlapping_areas():
 			var item = overlapping.get_parent()
 			if item is Item and not item.is_dragged():
-				#if GameLogic.is_correct(item, area):
+				if GameLogic.is_correct(item, area):
 					print(" --> "+str(item.get_name())+" | "+str(area.get_name()))
 					item.get_node("Hitbox/AreaShape").disabled = true
 
