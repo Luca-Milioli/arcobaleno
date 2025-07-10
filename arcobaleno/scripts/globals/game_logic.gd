@@ -5,6 +5,9 @@ const N_COLOR: int = 5
 
 enum GROUPS {WHITE, ORANGE, GREEN, BLUE, RED}
 
+signal correct_fruit
+signal uncorrect_fruit
+
 var _score: Array[int]
 var _max_score: Array[int]
 
@@ -13,7 +16,11 @@ func _ready() -> void:
 		_score.append(0)
 		_max_score.append(0)
 
-func is_correct(fruit: Item, area: Area2D) -> bool:
+func connect_to_target(receiver):
+	self.correct_fruit.connect(receiver._on_correct_fruit)
+	self.uncorrect_fruit.connect(receiver._on_uncorrect_fruit)
+
+func item_released(fruit: Item, area: Area2D) -> void:
 	var group = fruit.get_group()
 	var correct = false
 	match group:
@@ -33,14 +40,19 @@ func is_correct(fruit: Item, area: Area2D) -> bool:
 			if area.get_name() == "RedArea":
 				correct = true
 	if correct:
-		_on_correct(group)
-		return true
-	return false
+		_on_correct(fruit)
+	else:
+		_on_uncorrect(fruit)
 
-func _on_correct(group: GROUPS) -> void:
+func _on_correct(fruit: Item) -> void:
+	var group = fruit.get_group()
 	_score[group] += 1
+	self.correct_fruit.emit(fruit)
 	if _score[group] == _max_score[group]:
 		_group_completed(group)
+
+func _on_uncorrect(fruit: Item) -> void:
+	self.uncorrect_fruit.emit(fruit)
 
 func _group_completed(group: GROUPS) -> void:
 	pass
