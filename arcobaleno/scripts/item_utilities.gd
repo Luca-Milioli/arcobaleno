@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name Item
+
 var dragging : bool
 var drag_offset : Vector2
 
@@ -18,6 +20,9 @@ func set_image(img: String):
 
 func get_image():
 	return $ItemSprite.get_texture().resource_path
+
+func is_dragged():
+	return self.dragging
 	
 func _on_hitbox_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:

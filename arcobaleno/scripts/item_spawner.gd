@@ -43,7 +43,9 @@ func spawn():
 	# 86
 	
 	# list is already shuffled
-	item.set_image(self.images.pop_back())
+	var img = self.images.pop_back()
+	item.set_image(img)
+	item.set_name(img.get_basename().get_file())
 	#print("ITEM: "+str(item.position) + " | "+str(item.get_image()))
 	add_child(item)
 	

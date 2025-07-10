@@ -78,4 +78,8 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_7nafd")
 debug_color = Color(1, 1, 1, 0.392157)
 
-[connection signal="area_shape_entered" from="BlueArea" to="." method="_on_blue_area_area_shape_entered"]
+[connection signal="input_event" from="RedArea" to="." method="_on_red_area_input_event"]
+[connection signal="input_event" from="BlueArea" to="." method="_on_blue_area_input_event"]
+[connection signal="input_event" from="GreenArea" to="." method="_on_green_area_input_event"]
+[connection signal="input_event" from="OrangeArea" to="." method="_on_orange_area_input_event"]
+[connection signal="input_event" from="WhiteArea" to="." method="_on_white_area_input_event"]
