@@ -3,7 +3,8 @@ extends Control
 func _on_correct_fruit(fruit: Item) -> void:
 	fruit.disable_area()
 	$FeedbackRect/FeedbackLabel.set_text(fruit.get_name().to_upper())
-	$FeedbackRect.visible = true
+	$FeedbackRect.fade_in_out()
+	
 
 func _on_uncorrect_fruit(fruit: Item) -> void:
 	fruit.reset()

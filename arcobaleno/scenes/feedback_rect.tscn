@@ -1,14 +1,14 @@
 [gd_scene load_steps=4 format=3 uid="uid://c2e4pywp1itp4"]
 
 [ext_resource type="Texture2D" uid="uid://sooy1lr80iii" path="res://icon.svg" id="1_3fdbp"]
-[ext_resource type="Script" uid="uid://djrt8iduxangp" path="res://scripts/feedback_rect.gd" id="2_wfeml"]
+[ext_resource type="Script" uid="uid://b4p3tthpeeoy8" path="res://scripts/feedback_rect.gd" id="2_wfeml"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_os5sa"]
 font_size = 50
 font_color = Color(0.117647, 0.972549, 1, 1)
 
 [node name="FeedbackRect" type="TextureRect"]
-visible = false
+modulate = Color(1, 1, 1, 0)
 anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
@@ -39,5 +39,3 @@ text = "Albicocca"
 label_settings = SubResource("LabelSettings_os5sa")
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
