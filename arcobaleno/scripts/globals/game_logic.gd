@@ -10,8 +10,8 @@ var _max_score: Array[int]
 
 func _ready() -> void:
 	for i in range(N_COLOR):
-		_score[i] = 0
-		_max_score[i] = 0
+		_score.append(0)
+		_max_score.append(0)
 
 func is_correct(fruit: Item, area: Area2D) -> bool:
 	var group = fruit.get_group()
