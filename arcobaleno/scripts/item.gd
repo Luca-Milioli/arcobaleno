@@ -1,11 +1,21 @@
 extends Node2D
 
+class_name Item
+
 var dragging : bool
 var drag_offset : Vector2
+var _fruit: String
+var _group: GameLogic.GROUPS
 
 func _ready() -> void:
 	self.dragging = false
-	
+
+func set_group(group: GameLogic.GROUPS) -> void:
+	self._group = group
+
+func get_group() -> GameLogic.GROUPS:
+	return self._group
+
 func get_pixels() -> Vector2:
 	var sprite = $ItemSprite
 	var tex_size = sprite.region_enabled if sprite.region_rect.size else sprite.texture.get_size()
@@ -13,7 +23,6 @@ func get_pixels() -> Vector2:
 	return tex_size * global_scale
 
 func set_image(img: String):
-	#print("LOADING IMAGE: "+img)
 	$ItemSprite.set_texture(load(img))
 
 func get_image():
