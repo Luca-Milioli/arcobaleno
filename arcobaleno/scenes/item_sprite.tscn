@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://4wwxj7bvl11v"]
+
+[ext_resource type="Script" uid="uid://dj7mawedeaa3n" path="res://scripts/item_utilities.gd" id="1_a5an3"]
+[ext_resource type="Texture2D" uid="uid://d27bnokv638k3" path="res://art/graphics/fruit/kiwi.png" id="2_a5an3"]
+[ext_resource type="Texture2D" uid="uid://5df6t0t4lxnu" path="res://art/graphics/glass.png" id="2_w2skk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dbeuo"]
+radius = 627.407
+
+[node name="Item" type="Node2D"]
+scale = Vector2(0.07, 0.07)
+script = ExtResource("1_a5an3")
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="AreaShape" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_dbeuo")
+debug_color = Color(0, 0, 0, 1)
+
+[node name="GlassCircle" type="Sprite2D" parent="."]
+position = Vector2(0, 14.2857)
+scale = Vector2(1.1, 1.2)
+texture = ExtResource("2_w2skk")
+
+[node name="ItemSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_a5an3")
+
+[connection signal="input_event" from="Hitbox" to="." method="_on_hitbox_input_event"]

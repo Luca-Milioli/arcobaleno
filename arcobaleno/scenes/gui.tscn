@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://bi1alhp0os1qy"]
+
+[ext_resource type="PackedScene" uid="uid://u3ar5vawt1nm" path="res://scenes/rainbow.tscn" id="1_mfius"]
+[ext_resource type="PackedScene" uid="uid://bwq325pudl2mn" path="res://scenes/item_spawner.tscn" id="2_ynd5l"]
+
+[node name="Gui" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="Rainbow" parent="." instance=ExtResource("1_mfius")]
+layout_mode = 1
+mouse_filter = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -74.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ItemSpawner" parent="HBoxContainer" instance=ExtResource("2_ynd5l")]
+
+[connection signal="tree_entered" from="." to="HBoxContainer/ItemSpawner" method="_on_gui_tree_entered"]

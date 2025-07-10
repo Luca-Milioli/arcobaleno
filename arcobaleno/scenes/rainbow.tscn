@@ -1,0 +1,81 @@
+[gd_scene load_steps=4 format=3 uid="uid://u3ar5vawt1nm"]
+
+[ext_resource type="Script" uid="uid://652tnsdpobw0" path="res://scripts/rainbow.gd" id="1_bpphj"]
+[ext_resource type="Texture2D" uid="uid://ci3htygumbpjt" path="res://art/graphics/white_king.png" id="1_byy1y"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7nafd"]
+radius = 47.0
+height = 1254.0
+
+[node name="Rainbow" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bpphj")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -314.0
+offset_right = 320.0
+offset_bottom = 314.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_byy1y")
+stretch_mode = 6
+flip_h = true
+
+[node name="RedArea" type="Area2D" parent="."]
+position = Vector2(598, 244)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RedArea"]
+position = Vector2(-21, 179)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_7nafd")
+debug_color = Color(0.964706, 0.0392157, 0, 0.392157)
+
+[node name="BlueArea" type="Area2D" parent="."]
+position = Vector2(598, 150)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BlueArea"]
+position = Vector2(-21, 179)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_7nafd")
+debug_color = Color(0, 0.298039, 0.913725, 0.392157)
+
+[node name="GreenArea" type="Area2D" parent="."]
+position = Vector2(598, 56)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GreenArea"]
+position = Vector2(-21, 179)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_7nafd")
+debug_color = Color(0.0627451, 0.87451, 0, 0.392157)
+
+[node name="OrangeArea" type="Area2D" parent="."]
+position = Vector2(598, -38)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OrangeArea"]
+position = Vector2(-21, 179)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_7nafd")
+debug_color = Color(1, 0.396078, 0.0431373, 0.392157)
+
+[node name="WhiteArea" type="Area2D" parent="."]
+position = Vector2(598, -132)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WhiteArea"]
+position = Vector2(-21, 179)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_7nafd")
+debug_color = Color(1, 1, 1, 0.392157)
+
+[connection signal="area_shape_entered" from="BlueArea" to="." method="_on_blue_area_area_shape_entered"]
