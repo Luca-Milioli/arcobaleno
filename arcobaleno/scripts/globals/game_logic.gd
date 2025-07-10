@@ -7,18 +7,23 @@ enum GROUPS {WHITE, ORANGE, GREEN, BLUE, RED}
 
 signal correct_fruit
 signal uncorrect_fruit
+signal group_completed
+signal win
 
 var _score: Array[int]
 var _max_score: Array[int]
+var _n_group_completed: int = 0
 
 func _ready() -> void:
 	for i in range(N_COLOR):
 		_score.append(0)
 		_max_score.append(0)
 
-func connect_to_target(receiver):
+func connect_to_target(receiver) -> void:
 	self.correct_fruit.connect(receiver._on_correct_fruit)
 	self.uncorrect_fruit.connect(receiver._on_uncorrect_fruit)
+	self.group_completed.connect(receiver._on_group_completed)
+	self.win.connect(receiver._on_win)
 
 func item_released(fruit: Item, area: Area2D) -> void:
 	var group = fruit.get_group()
@@ -48,11 +53,17 @@ func _on_correct(fruit: Item) -> void:
 	var group = fruit.get_group()
 	_score[group] += 1
 	self.correct_fruit.emit(fruit)
-	if _score[group] == _max_score[group]:
+	if _score[group] >= _max_score[group]:
 		_group_completed(group)
 
 func _on_uncorrect(fruit: Item) -> void:
 	self.uncorrect_fruit.emit(fruit)
 
 func _group_completed(group: GROUPS) -> void:
-	pass
+	self._n_group_completed += 1
+	self.group_completed.emit(group)
+	if _n_group_completed >= N_COLOR:
+		_win()
+
+func _win():
+	self.win.emit()

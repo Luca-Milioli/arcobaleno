@@ -1,13 +1,15 @@
 extends Control
 
-func _ready() -> void:
-	GameLogic.connect_to_target(self)
-
-func _on_correct_fruit(fruit: Item):
+func _on_correct_fruit(fruit: Item) -> void:
 	fruit.disable_area()
 	$FeedbackLabel.set_text(fruit.get_name().to_upper())
 	$FeedbackRect.visible = true
-	await get_tree().create_timer(2.0).timeout
 
-func _on_uncorrect_fruit(fruit: Item):
+func _on_uncorrect_fruit(fruit: Item) -> void:
 	fruit.reset()
+
+func _on_group_completed(group: GameLogic.GROUPS) -> void:
+	pass
+
+func _on_win() -> void:
+	pass

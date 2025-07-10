@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Arcobaleno"
-run/main_scene="uid://c4yr5c4nqiyfs"
+run/main_scene="uid://b0oi7t5h7cgh7"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
