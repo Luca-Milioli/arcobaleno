@@ -5,12 +5,20 @@ class_name Item
 var dragging : bool
 var drag_offset : Vector2
 var start_pos : Vector2
+var _dropped : bool
 var _fruit: String
 var _group: GameLogic.GROUPS
 
 func _ready() -> void:
 	self.dragging = false
+	self._dropped = false
 
+func set_dropped(dropped: bool):
+	self._dropped = dropped
+
+func is_dropped():
+	return self._dropped
+	
 func setup(image: String, spawn_position: Vector2):
 	set_image(image)
 	set_name(image.get_basename().get_file())

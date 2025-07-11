@@ -1,7 +1,7 @@
 extends Node
 
 const N_FRUITS: int = 10
-const N_COLOR: int = 5
+const N_GROUP: int = 5
 
 enum GROUPS {WHITE, ORANGE, GREEN, BLUE, RED}
 
@@ -15,15 +15,20 @@ var _max_score: Array[int]
 var _n_group_completed: int = 0
 
 func _ready() -> void:
-	for i in range(N_COLOR):
+	var max_score = N_FRUITS / N_GROUP
+	for i in range(N_GROUP):
 		_score.append(0)
-		_max_score.append(0)
+		_max_score.append(max_score)
 
 func connect_to_target(receiver) -> void:
 	self.correct_fruit.connect(receiver._on_correct_fruit)
 	self.uncorrect_fruit.connect(receiver._on_uncorrect_fruit)
 	self.group_completed.connect(receiver._on_group_completed)
-	self.win.connect(receiver._on_win)
+
+func reset() -> void:
+	for i in range(N_GROUP):
+		_score[i] = 0
+	_n_group_completed = 0
 
 func item_released(fruit: Item, area: Area2D) -> void:
 	var group = fruit.get_group()
@@ -62,7 +67,7 @@ func _on_uncorrect(fruit: Item) -> void:
 func _group_completed(group: GROUPS) -> void:
 	self._n_group_completed += 1
 	self.group_completed.emit(group)
-	if _n_group_completed >= N_COLOR:
+	if _n_group_completed >= N_GROUP:
 		_win()
 
 func _win():

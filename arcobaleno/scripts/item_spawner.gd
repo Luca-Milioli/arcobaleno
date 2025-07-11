@@ -26,6 +26,13 @@ func _set_offset(item):
 	if self.offset == -1.0:
 		self.offset = (self.screen_size / LINE_MAX_ITEMS) - item.get_pixels().x
 
+func animate(item, new_pos = self.spawn_position):
+	var tween = create_tween()
+	if new_pos == self.spawn_position:
+		item.position.x = 1200	
+	tween.tween_property(item, "position", new_pos - Vector2(25, 0), 0.8).set_delay(0.12 * self.spawned_items).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(item, "position", new_pos, 0.3).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+	
 func spawn():
 	var item = scene_to_instantiate.instantiate()
 	_set_offset(item)
@@ -34,22 +41,21 @@ func spawn():
 	if self.spawned_items >= 1:
 		self.spawn_position.x += item.get_pixels().x
 	
-	var tween = create_tween()
-	item.position.x = 1200
-	tween.tween_property(item, "position", spawn_position - Vector2(25, 0), 0.8).set_delay(0.12 * self.spawned_items).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(item, "position", spawn_position, 0.3).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+	animate(item)
 	
 	# list is already shuffled
 	var img = self.images.pop_back()
-	item.setup(img, spawn_position)
+	item.setup(img, self.spawn_position)
 	add_child(item)
 	
 func spawn_all_possible():
-	if self.spawned_items >= LINE_MAX_ITEMS:
+	if self.spawned_items >= LINE_MAX_ITEMS or self.spawned_items >= TOTAL_MAX_ITEMS:
 		return
+	
 	spawn()
 	
 	self.spawned_items += 1
+	
 	
 	spawn_all_possible()
 
@@ -72,6 +78,24 @@ func get_images_from_dir(path: String):
 	self.images.shuffle()
 	return
 
+func shift(last_moved_item : Item):
+	var children = get_children()
+	var moved_item_index = 0
+	print("---------------------------------------")
+	# find the separator between items (left : no shift | right : shift)
+	while(children[moved_item_index] != last_moved_item and moved_item_index <= children.size()):
+		moved_item_index+=1
+	
+	# left-shift items on the right
+	for i in range(children.size() - 1, moved_item_index, -1):
+		print(str(i) + " | "+ str(children[i].get_name()) + " | "+str(children[i].start_pos) + " | "+str(children[i].position))
+		if not children[i].is_dropped():
+			animate(children[i], children[i - 1].start_pos)
+			children[i].start_pos = children[i - 1].start_pos
+
+func spawn_and_shift(last_moved_item : Item):
+	#spawn()
+	shift(last_moved_item)
 	
 func _set_screen_size():
 	self.screen_size = $"..".size.x # offset is calculated in spawn()

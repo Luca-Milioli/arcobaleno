@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bi1alhp0os1qy"]
+[gd_scene load_steps=6 format=3 uid="uid://bi1alhp0os1qy"]
 
 [ext_resource type="PackedScene" uid="uid://u3ar5vawt1nm" path="res://scenes/rainbow.tscn" id="1_mfius"]
-[ext_resource type="Script" uid="uid://0jvc416ci5kj" path="res://scripts/gui.gd" id="1_ynd5l"]
+[ext_resource type="Script" uid="uid://legowsocji12" path="res://scripts/gui.gd" id="1_ynd5l"]
 [ext_resource type="PackedScene" uid="uid://bwq325pudl2mn" path="res://scenes/item_spawner.tscn" id="2_ynd5l"]
 [ext_resource type="PackedScene" uid="uid://c2e4pywp1itp4" path="res://scenes/feedback_rect.tscn" id="4_b8iy7"]
+[ext_resource type="PackedScene" uid="uid://buhfjmelrx2jv" path="res://scenes/group_rect.tscn" id="5_jqlde"]
 
 [node name="Gui" type="Control"]
 layout_mode = 3
@@ -32,7 +33,21 @@ grow_vertical = 0
 
 [node name="ItemSpawner" parent="HBoxContainer" instance=ExtResource("2_ynd5l")]
 
+[node name="GroupRect" parent="." instance=ExtResource("5_jqlde")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -64.0
+offset_right = 64.0
+
 [node name="FeedbackRect" parent="." instance=ExtResource("4_b8iy7")]
 layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -64.0
+offset_right = 64.0
 
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="tree_entered" from="." to="HBoxContainer/ItemSpawner" method="_on_gui_tree_entered"]
