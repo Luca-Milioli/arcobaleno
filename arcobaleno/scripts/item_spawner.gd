@@ -80,18 +80,24 @@ func get_images_from_dir(path: String):
 
 func shift(last_moved_item : Item):
 	var children = get_children()
-	var moved_item_index = 0
-	print("---------------------------------------")
-	# find the separator between items (left : no shift | right : shift)
-	while(children[moved_item_index] != last_moved_item and moved_item_index <= children.size()):
-		moved_item_index+=1
+	var children_size = children.size()
+	var moved_item_index = last_moved_item.get_index()
 	
-	# left-shift items on the right
-	for i in range(children.size() - 1, moved_item_index, -1):
-		print(str(i) + " | "+ str(children[i].get_name()) + " | "+str(children[i].start_pos) + " | "+str(children[i].position))
-		if not children[i].is_dropped():
-			animate(children[i], children[i - 1].start_pos)
-			children[i].start_pos = children[i - 1].start_pos
+	while(children[0] != last_moved_item):
+		children.pop_front()
+		children_size -= 1
+	
+	var i = 1
+	while(i < children.size()):
+		if children[i].is_dropped():
+			children.pop_at(i)
+			children_size -= 1
+		else:
+			i += 1
+	
+	for j in range(children_size - 1, 0, -1):
+		animate(children[j], children[j - 1].start_pos)
+		children[j].start_pos = children[j - 1].start_pos
 
 func spawn_and_shift(last_moved_item : Item):
 	#spawn()
