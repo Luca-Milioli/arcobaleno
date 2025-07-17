@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5df6t0t4lxnu"
-path="res://.godot/imported/glass.png-600f50069b32e3407ed48baf93744c17.ctex"
+uid="uid://dbriooird23ew"
+path="res://.godot/imported/frutti di bosco.png-6dd306118e9772a2adad2855c2cf2430.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/graphics/glass.png"
-dest_files=["res://.godot/imported/glass.png-600f50069b32e3407ed48baf93744c17.ctex"]
+source_file="res://art/graphics/fruit/frutti di bosco.png"
+dest_files=["res://.godot/imported/frutti di bosco.png-6dd306118e9772a2adad2855c2cf2430.ctex"]
 
 [params]
 

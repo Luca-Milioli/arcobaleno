@@ -30,7 +30,7 @@ func reset() -> void:
 		_score[i] = 0
 	_n_group_completed = 0
 
-func item_released(fruit: Item, area: Area2D) -> void:
+func fruit_released(fruit: Fruit, area: Area2D) -> void:
 	var group = fruit.get_group()
 	var correct = false
 	match group:
@@ -54,14 +54,14 @@ func item_released(fruit: Item, area: Area2D) -> void:
 	else:
 		_on_uncorrect(fruit)
 
-func _on_correct(fruit: Item) -> void:
+func _on_correct(fruit: Fruit) -> void:
 	var group = fruit.get_group()
 	_score[group] += 1
 	self.correct_fruit.emit(fruit)
 	if _score[group] >= _max_score[group]:
 		_group_completed(group)
 
-func _on_uncorrect(fruit: Item) -> void:
+func _on_uncorrect(fruit: Fruit) -> void:
 	self.uncorrect_fruit.emit(fruit)
 
 func _group_completed(group: GROUPS) -> void:

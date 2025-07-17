@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bv3xy2d7g2umt"
-path="res://.godot/imported/frutti-rossi.png-db2c809e87a3cde7023c1a911cdb3795.ctex"
+uid="uid://dw10a283pufsr"
+path="res://.godot/imported/end_menu.jpg-81fec874b8f6aae436eb3146718c8773.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/graphics/fruit/frutti-rossi.png"
-dest_files=["res://.godot/imported/frutti-rossi.png-db2c809e87a3cde7023c1a911cdb3795.ctex"]
+source_file="res://art/graphics/end_menu.jpg"
+dest_files=["res://.godot/imported/end_menu.jpg-81fec874b8f6aae436eb3146718c8773.ctex"]
 
 [params]
 

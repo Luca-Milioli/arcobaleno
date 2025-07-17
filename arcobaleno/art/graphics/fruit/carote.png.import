@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3vugx5w60mq"
-path="res://.godot/imported/carota.png-8e9698345c0d7c90078ad7232f6716a1.ctex"
+uid="uid://b1oi2o74cpdm7"
+path="res://.godot/imported/carote.png-b08b8eb9d980dd576e03de5e47a5b48f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/graphics/fruit/carota.png"
-dest_files=["res://.godot/imported/carota.png-8e9698345c0d7c90078ad7232f6716a1.ctex"]
+source_file="res://art/graphics/fruit/carote.png"
+dest_files=["res://.godot/imported/carote.png-b08b8eb9d980dd576e03de5e47a5b48f.ctex"]
 
 [params]
 

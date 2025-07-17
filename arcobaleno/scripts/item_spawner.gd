@@ -2,8 +2,8 @@ extends Node2D
 
 @export var scene_to_instantiate : PackedScene
 
-const TOTAL_MAX_ITEMS = 30
-const LINE_MAX_ITEMS = 7
+const TOTAL_MAX_ITEMS = 20
+const LINE_MAX_ITEMS = 6
 
 var spawn_position : Vector2
 var spawned_items : int

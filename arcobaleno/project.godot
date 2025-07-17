@@ -21,6 +21,8 @@ GameLogic="*res://scripts/globals/game_logic.gd"
 
 [display]
 
+window/size/viewport_width=1024
+window/size/viewport_height=784
 window/stretch/mode="viewport"
 
 [rendering]

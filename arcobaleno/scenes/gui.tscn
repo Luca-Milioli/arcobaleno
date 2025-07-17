@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://bi1alhp0os1qy"]
+[gd_scene load_steps=8 format=3 uid="uid://bi1alhp0os1qy"]
 
-[ext_resource type="PackedScene" uid="uid://u3ar5vawt1nm" path="res://scenes/rainbow.tscn" id="1_mfius"]
+[ext_resource type="PackedScene" uid="uid://dewp41breffhx" path="res://scenes/rainbow.tscn" id="1_mfius"]
 [ext_resource type="Script" uid="uid://0jvc416ci5kj" path="res://scripts/gui.gd" id="1_ynd5l"]
-[ext_resource type="PackedScene" uid="uid://bwq325pudl2mn" path="res://scenes/item_spawner.tscn" id="2_ynd5l"]
+[ext_resource type="Texture2D" uid="uid://pbw56s4em4p8" path="res://art/graphics/gui_background.jpg" id="2_7yii4"]
+[ext_resource type="PackedScene" uid="uid://bieiqc1mo6u2r" path="res://scenes/top_bar.tscn" id="2_08a8y"]
 [ext_resource type="PackedScene" uid="uid://c2e4pywp1itp4" path="res://scenes/feedback_rect.tscn" id="4_b8iy7"]
 [ext_resource type="PackedScene" uid="uid://buhfjmelrx2jv" path="res://scenes/group_rect.tscn" id="5_jqlde"]
+[ext_resource type="PackedScene" uid="uid://6tfd4fibix5d" path="res://scenes/fruit_factory.tscn" id="7_7yii4"]
 
 [node name="Gui" type="Control"]
 layout_mode = 3
@@ -16,22 +18,27 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_ynd5l")
 
-[node name="Rainbow" parent="." instance=ExtResource("1_mfius")]
+[node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
-mouse_filter = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -74.0
-offset_bottom = 20.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
+texture = ExtResource("2_7yii4")
 
-[node name="ItemSpawner" parent="HBoxContainer" instance=ExtResource("2_ynd5l")]
+[node name="Rainbow" parent="." instance=ExtResource("1_mfius")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -393.0
+offset_top = -243.0
+offset_right = 393.01
+offset_bottom = 155.0
+mouse_filter = 1
 
 [node name="GroupRect" parent="." instance=ExtResource("5_jqlde")]
 layout_mode = 1
@@ -42,6 +49,7 @@ offset_left = -64.0
 offset_right = 64.0
 
 [node name="FeedbackRect" parent="." instance=ExtResource("4_b8iy7")]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -49,5 +57,12 @@ anchor_right = 0.5
 offset_left = -64.0
 offset_right = 64.0
 
+[node name="TopBar" parent="." instance=ExtResource("2_08a8y")]
+layout_mode = 1
+
+[node name="FruitFactory" parent="." instance=ExtResource("7_7yii4")]
+layout_mode = 1
+
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
-[connection signal="tree_entered" from="." to="HBoxContainer/ItemSpawner" method="_on_gui_tree_entered"]
+[connection signal="audio_pressed" from="TopBar" to="." method="_on_audio_pressed"]
+[connection signal="retry_pressed" from="TopBar" to="." method="_on_retry_pressed"]

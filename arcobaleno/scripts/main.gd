@@ -1,16 +1,15 @@
 extends Node
 
-var menu: Control
 var gui: Control
 
-func _ready() -> void:
-	menu = get_node("Menu")
-
 func _on_menu_play_pressed() -> void:
-	remove_child(menu)
+	var start_menu = get_node("StartMenu")
+	remove_child(start_menu)
+	start_menu.queue_free()
 	
 	gui = preload("res://scenes/gui.tscn").instantiate()
 	GameLogic.connect_to_target(gui)
+	
 	add_child(gui)
 	
 	GameLogic.win.connect(_on_win)
@@ -18,16 +17,21 @@ func _on_menu_play_pressed() -> void:
 func _on_win() -> void:
 	await gui.finished
 	
-	menu.end_game()
-	
-	menu.play_pressed.disconnect(_on_menu_play_pressed)
-	menu.play_pressed.connect(_on_end_menu_play_pressed)
+	var end_menu = preload("res://scenes/end_menu.tscn").instantiate()
 	
 	remove_child(gui)
-	gui.queue_free()
-	add_child(menu)
 	
-	GameLogic.reset()
+	add_child(end_menu)
+	gui.queue_free()
+	
+	end_menu.play_pressed.connect(_on_end_menu_play_pressed)
 
 func _on_end_menu_play_pressed() -> void:
+	GameLogic.reset()
 	get_tree().reload_current_scene()
+
+func _on_audio_pressed() -> void:
+	pass # Replace with function body.
+
+func _on_retry_pressed() -> void:
+	pass # Replace with function body.

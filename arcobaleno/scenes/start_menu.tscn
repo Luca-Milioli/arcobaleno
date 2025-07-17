@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4yr5c4nqiyfs"]
+
+[ext_resource type="Script" uid="uid://cwivy0dqkdjlh" path="res://scripts/start_menu.gd" id="1_vjb58"]
+[ext_resource type="Texture2D" uid="uid://x160g4ukrapc" path="res://art/graphics/start_menu.jpg" id="2_vjb58"]
+[ext_resource type="PackedScene" uid="uid://cixb2slrwfeax" path="res://scenes/custom_button.tscn" id="3_con2f"]
+
+[node name="StartMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vjb58")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_vjb58")
+expand_mode = 1
+
+[node name="Text" type="Label" parent="."]
+layout_mode = 0
+offset_left = 268.02
+offset_top = 437.17
+offset_right = 753.02
+offset_bottom = 587.17
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Rosso, giallo-arancione, verde, blu-viola e bianco sono i colori del mangiar sano. Ognuno fornisce nutrienti preziosi!"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="PlayButton" parent="." instance=ExtResource("3_con2f")]
+layout_mode = 1
+offset_left = -99.0
+offset_top = 254.0
+offset_right = 112.0
+offset_bottom = 328.0
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_pressed"]

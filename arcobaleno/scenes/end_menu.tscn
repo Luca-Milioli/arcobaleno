@@ -1,0 +1,66 @@
+[gd_scene load_steps=11 format=3 uid="uid://c2l3uqf1y2a8m"]
+
+[ext_resource type="PackedScene" uid="uid://cixb2slrwfeax" path="res://scenes/custom_button.tscn" id="1_c01dn"]
+[ext_resource type="PackedScene" uid="uid://c4yr5c4nqiyfs" path="res://scenes/start_menu.tscn" id="1_fpl1s"]
+[ext_resource type="Script" uid="uid://csrak7jqp6xhg" path="res://scripts/end_menu.gd" id="2_albv7"]
+[ext_resource type="Texture2D" uid="uid://dw10a283pufsr" path="res://art/graphics/end_menu.jpg" id="3_87tj7"]
+[ext_resource type="Texture2D" uid="uid://b6cewtwyavtke" path="res://art/graphics/button_hover.png" id="4_wqo5a"]
+[ext_resource type="PackedScene" uid="uid://bieiqc1mo6u2r" path="res://scenes/top_bar.tscn" id="5_0aktc"]
+[ext_resource type="Texture2D" uid="uid://ddperml6v3a0w" path="res://art/graphics/button.png" id="5_nsqeq"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bfr1r"]
+texture = ExtResource("4_wqo5a")
+texture_margin_left = 32.0
+texture_margin_top = 32.0
+texture_margin_right = 32.0
+texture_margin_bottom = 40.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yt7k8"]
+texture = ExtResource("4_wqo5a")
+texture_margin_left = 32.0
+texture_margin_top = 32.0
+texture_margin_right = 32.0
+texture_margin_bottom = 40.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_32hcy"]
+texture = ExtResource("5_nsqeq")
+texture_margin_left = 32.0
+texture_margin_top = 32.0
+texture_margin_right = 32.0
+texture_margin_bottom = 40.0
+
+[node name="EndMenu" instance=ExtResource("1_fpl1s")]
+script = ExtResource("2_albv7")
+
+[node name="Background" parent="." index="0"]
+texture = ExtResource("3_87tj7")
+
+[node name="Text" parent="." index="1"]
+offset_left = 212.0
+offset_top = 358.0
+offset_right = 812.0
+offset_bottom = 486.0
+text = "Hai completato il gioco!
+Rigioca per migliorare le tue capacità!"
+
+[node name="PlayButton" parent="." index="2"]
+offset_left = 11.75
+offset_top = 234.0
+offset_right = 234.75
+offset_bottom = 306.0
+theme_override_styles/hover = SubResource("StyleBoxTexture_bfr1r")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_yt7k8")
+theme_override_styles/normal = SubResource("StyleBoxTexture_32hcy")
+
+[node name="SiteButton" parent="." index="3" instance=ExtResource("1_c01dn")]
+layout_mode = 1
+offset_left = -235.25
+offset_top = 234.0
+offset_right = -12.25
+offset_bottom = 306.0
+theme_override_styles/hover = SubResource("StyleBoxTexture_bfr1r")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_yt7k8")
+theme_override_styles/normal = SubResource("StyleBoxTexture_32hcy")
+
+[node name="TopBar" parent="." index="4" instance=ExtResource("5_0aktc")]
+layout_mode = 1
