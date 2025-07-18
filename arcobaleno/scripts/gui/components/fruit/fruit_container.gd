@@ -21,16 +21,17 @@ func _start_fruits(fruits: Array[Fruit]) -> void:
 		get_child(i).add_child(fruits[i])
 
 func _swap_visibility(enter: Slot, exit: Slot) -> void:
-	_animate_entering(enter)
-	enter.visible = true
-	exit.visible = false
+	_animate_enter_or_exit(enter, true)
+	_animate_enter_or_exit(exit, false)
+	#enter.visible = true
+	#exit.visible = false
 
 func shift_right() -> void:
 	var child_count = get_child_count()
 	if child_count <= TOTAL_SLOT:
 		return
 	
-	var exiter = get_child(TOTAL_SLOT - 1)
+	var exiter = get_child(TOTAL_SLOT - 1) as Slot
 	var enterer = get_child(child_count - 1) as Slot
 	
 	var original_positions = get_children_global_positions()
@@ -46,12 +47,13 @@ func shift_left() -> void:
 	if get_child_count() <= TOTAL_SLOT:
 		return
 	
-	var exiter = get_child(0)
+	var exiter = get_child(0) as Slot
 	var enterer = get_child(TOTAL_SLOT) as Slot
 	
 	var original_positions = get_children_global_positions()
 	var last = get_child(TOTAL_SLOT - 1) as Slot
 	original_positions[enterer] = original_positions[last] + Vector2(get_theme_constant("separation") + last.size.x, 0)
+	original_positions.erase(exiter)
 	
 	move_child(exiter, -1)
 	_swap_visibility(enterer, exiter)
@@ -72,14 +74,13 @@ func moved(moved_fruit: Fruit) -> void:
 		original_positions[new_visible] = original_positions[last] + Vector2(get_theme_constant("separation") + last.size.x, 0)
 		if last == empty_slot:
 			original_positions.erase(last)
-		_animate_entering(new_visible)
+		_animate_enter_or_exit(new_visible, true)
 		new_visible.visible = true
 	
 	if get_child_count() - 1 == TOTAL_SLOT:		# must check before queue_free (or i have to wait a frame and bug animation)
 		self.enough_slot.emit()
 	
 	empty_slot.queue_free()
-	
 	_animate_children(original_positions, false)
 
 func get_children_global_positions(from: Slot = null) -> Dictionary[Slot, Vector2]:
@@ -94,7 +95,7 @@ func get_children_global_positions(from: Slot = null) -> Dictionary[Slot, Vector
 		
 	return positions
 
-func _animate_children(old_position: Dictionary[Slot, Vector2], direction_right: bool):
+func _animate_children(old_position: Dictionary[Slot, Vector2], direction_right: bool) -> void: 
 	var direction = 1 if direction_right else -1
 	var tween := create_tween()
 	tween.set_parallel()
@@ -108,11 +109,17 @@ func _animate_children(old_position: Dictionary[Slot, Vector2], direction_right:
 		tween.tween_property(slot, "global_position", new_pos, 0.8).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
 		#tween.tween_property(slot, "global_position", new_pos, 0.3).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
 
-func _animate_entering(slot: Slot):
-	slot.modulate.a = 0
-	slot.visible = true
-	
+func _animate_enter_or_exit(slot: Slot, enter: bool) -> void: # enter = true, exit = false
 	var tween := create_tween()
-	tween.set_parallel()
 	
-	tween.tween_property(slot, "modulate:a", 1, 0.8).set_ease(Tween.EASE_OUT)
+	var end_modulate
+	if enter:
+		slot.modulate.a = 0
+		slot.visible = true
+		end_modulate = 1
+	else:
+		tween.finished.connect(func(): slot.visible = false)
+		end_modulate = 0
+	
+	tween.set_parallel()
+	tween.tween_property(slot, "modulate:a", end_modulate, 0.8).set_ease(Tween.EASE_OUT)

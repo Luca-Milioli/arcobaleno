@@ -2,6 +2,8 @@ extends TextureRect
 
 class_name Fruit
 
+signal is_dragging
+
 var dragging : bool = false
 var drag_offset : Vector2
 var _dropped : bool = false
@@ -34,6 +36,7 @@ func get_image() -> String:
 
 func set_dragging(dragging: bool) -> void:
 	self.dragging = dragging
+	
 
 func is_dragged() -> bool:
 	return self.dragging
