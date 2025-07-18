@@ -13,7 +13,7 @@ config_version=5
 config/name="Arcobaleno"
 run/main_scene="uid://b0oi7t5h7cgh7"
 config/features=PackedStringArray("4.4", "Mobile")
-config/icon="uid://b35gwms784hw0"
+config/icon="uid://bufpndlmq5rgw"
 
 [autoload]
 
