@@ -7,6 +7,7 @@ func _on_tree_entered() -> void:
 
 func _on_menu_play_pressed() -> void:	# no more start menu -> unused
 	var start_menu = get_node("StartMenu")
+	await start_menu.kill()
 	remove_child(start_menu)
 	start_menu.queue_free()
 

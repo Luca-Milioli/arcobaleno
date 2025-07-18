@@ -2,12 +2,14 @@
 
 importer="csv_translation"
 type="Translation"
-uid="uid://cufnus6fvkrmj"
-valid=false
+uid="uid://rch0561hc0hj"
 
 [deps]
 
+files=["res://data/content.Mela.translation", "res://data/content.Pera.translation", "res://data/content.Cavolfiore.translation", "res://data/content.Finocchio.translation", "res://data/content.La squadra bianca è pronta! Ti aiuta a fare il pieno di Potassio e comprende anche aglio, cipolla, sedano e porri..translation"]
+
 source_file="res://data/content.csv"
+dest_files=["res://data/content.Mela.translation", "res://data/content.Pera.translation", "res://data/content.Cavolfiore.translation", "res://data/content.Finocchio.translation", "res://data/content.La squadra bianca è pronta! Ti aiuta a fare il pieno di Potassio e comprende anche aglio, cipolla, sedano e porri..translation"]
 
 [params]
 

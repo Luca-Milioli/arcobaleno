@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://mgklm4qm7xq8"]
 
 [ext_resource type="Script" uid="uid://dkrkjghy17fju" path="res://scripts/gui/components/tutorial.gd" id="1_5jwdl"]
-[ext_resource type="Texture2D" uid="uid://ba3fmmxpyf44d" path="res://art/graphics/Confirm.png" id="1_c13y7"]
+[ext_resource type="Texture2D" uid="uid://7xcp1hg8xsn3" path="res://art/graphics/Confirm.png" id="1_c13y7"]
 [ext_resource type="PackedScene" uid="uid://cixb2slrwfeax" path="res://scenes/components/custom_button.tscn" id="2_ph3nu"]
 [ext_resource type="FontFile" uid="uid://c3ii6qbpg4ulc" path="res://art/font/Roc_Grotesk_Bold.ttf" id="3_bkauq"]
 [ext_resource type="FontFile" uid="uid://by2fsotvgiu72" path="res://art/font/Roc_Grotesk_Medium.ttf" id="4_ooqid"]

@@ -1,15 +1,15 @@
 [gd_scene load_steps=13 format=3 uid="uid://bi1alhp0os1qy"]
 
 [ext_resource type="Script" uid="uid://0jvc416ci5kj" path="res://scripts/gui/main_ui/gui.gd" id="1_8h14w"]
-[ext_resource type="Texture2D" uid="uid://pbw56s4em4p8" path="res://art/graphics/backgrounds/gui_background.jpg" id="2_k8xsf"]
+[ext_resource type="Texture2D" uid="uid://7xd2x1ylfafl" path="res://art/graphics/backgrounds/gui_background.jpg" id="2_k8xsf"]
 [ext_resource type="PackedScene" uid="uid://dewp41breffhx" path="res://scenes/components/rainbow.tscn" id="3_gn6ma"]
 [ext_resource type="PackedScene" uid="uid://bieiqc1mo6u2r" path="res://scenes/components/top_bar.tscn" id="6_2trg8"]
 [ext_resource type="FontFile" uid="uid://btuhlt2wotj04" path="res://art/font/SkippySharp.ttf" id="7_k8xsf"]
 [ext_resource type="PackedScene" uid="uid://6tfd4fibix5d" path="res://scenes/components/fruit_container.tscn" id="7_pstwf"]
 [ext_resource type="PackedScene" uid="uid://b58mhp2m3rr8y" path="res://scenes/popups/reset_popup.tscn" id="9_gn6ma"]
-[ext_resource type="Texture2D" uid="uid://cyoc7pcvf6q62" path="res://art/graphics/buttons/arrow.png" id="10_q406m"]
+[ext_resource type="Texture2D" uid="uid://dhbt5uog886ky" path="res://art/graphics/buttons/arrow.png" id="10_q406m"]
 [ext_resource type="PackedScene" uid="uid://mgklm4qm7xq8" path="res://scenes/popups/tutorial.tscn" id="10_w77y4"]
-[ext_resource type="Texture2D" uid="uid://utwgpy5s2dta" path="res://art/graphics/buttons/arrow_hover.png" id="11_2trg8"]
+[ext_resource type="Texture2D" uid="uid://c4kuo5lv7sksd" path="res://art/graphics/buttons/arrow_hover.png" id="11_2trg8"]
 [ext_resource type="PackedScene" uid="uid://fqf6gbptn0x2" path="res://scenes/popups/feedback_color.tscn" id="11_q406m"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_gn6ma"]
