@@ -1,0 +1,60 @@
+[gd_scene load_steps=3 format=3 uid="uid://dewp41breffhx"]
+
+[ext_resource type="Script" uid="uid://652tnsdpobw0" path="res://scripts/gui/components/fruit/rainbow.gd" id="1_bpphj"]
+[ext_resource type="Texture2D" uid="uid://b35gwms784hw0" path="res://art/graphics/rainbow.png" id="2_bpphj"]
+
+[node name="Rainbow" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bpphj")
+
+[node name="Rainbow" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_bpphj")
+expand_mode = 1
+
+[node name="WhiteArea" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WhiteArea"]
+visible = false
+polygon = PackedVector2Array(2, 782, 102, 783, 102, 670, 116, 553, 147, 441, 199, 330, 272, 229, 316, 187, 383, 143, 429, 127, 494, 115, 569, 120, 628, 138, 700, 182, 755, 235, 803, 300, 854, 392, 890, 491, 908, 573, 919, 667, 920, 781, 1022, 783, 1023, 704, 1020, 649, 1011, 556, 988, 455, 969, 401, 946, 341, 915, 278, 883, 230, 852, 187, 813, 139, 731, 67, 681, 40, 624, 16, 558, 4, 509, -1, 460, 3, 401, 18, 357, 33, 297, 65, 245, 105, 205, 145, 166, 193, 135, 234, 102, 288, 69, 361, 47, 417, 14, 548, 1, 681, -1, 727)
+
+[node name="OrangeArea" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="OrangeArea"]
+visible = false
+polygon = PackedVector2Array(103, 784, 101, 730, 103, 671, 108, 612, 116, 554, 147, 442, 169, 392, 200, 331, 229, 286, 272, 229, 314, 187, 344, 167, 383, 143, 428, 127, 456, 120, 493, 115, 529, 116, 568, 120, 628, 138, 665, 160, 700, 183, 721, 201, 755, 235, 803, 299, 829, 342, 853, 390, 872, 439, 889, 491, 907, 573, 919, 667, 921, 783, 842, 783, 842, 677, 831, 585, 813, 511, 784, 437, 740, 362, 696, 308, 644, 264, 592, 239, 539, 226, 472, 227, 413, 244, 357, 280, 319, 316, 265, 388, 230, 454, 198, 549, 183, 634, 177, 716, 179, 783)
+
+[node name="GreenArea" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GreenArea"]
+visible = false
+polygon = PackedVector2Array(178, 784, 177, 714, 183, 634, 198, 549, 231, 452, 265, 387, 314, 322, 357, 279, 380, 264, 414, 245, 472, 227, 505, 225, 539, 226, 590, 238, 643, 263, 695, 308, 740, 363, 783, 436, 812, 511, 830, 583, 843, 677, 842, 783, 765, 783, 765, 713, 761, 651, 752, 602, 740, 556, 720, 508, 690, 454, 649, 403, 599, 365, 560, 349, 530, 343, 487, 343, 449, 351, 409, 373, 384, 391, 355, 422, 320, 473, 295, 521, 276, 574, 264, 622, 258, 671, 255, 735, 256, 783)
+
+[node name="BlueArea" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BlueArea"]
+visible = false
+polygon = PackedVector2Array(257, 783, 255, 734, 258, 671, 264, 622, 276, 573, 295, 521, 320, 473, 337, 445, 355, 422, 385, 391, 408, 373, 448, 351, 487, 343, 530, 343, 559, 349, 588, 360, 621, 379, 648, 402, 689, 452, 719, 508, 739, 555, 752, 602, 760, 650, 765, 713, 764, 783, 703, 783, 702, 723, 697, 669, 686, 621, 675, 588, 658, 553, 638, 521, 613, 489, 581, 464, 547, 449, 513, 444, 481, 446, 447, 458, 411, 486, 383, 521, 358, 565, 339, 613, 327, 653, 320, 713, 319, 783)
+
+[node name="RedArea" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RedArea"]
+visible = false
+polygon = PackedVector2Array(320, 783, 380, 783, 377, 724, 382, 671, 393, 630, 411, 592, 437, 560, 462, 540, 479, 532, 500, 530, 525, 528, 543, 533, 562, 541, 580, 556, 597, 576, 616, 605, 629, 640, 637, 667, 641, 695, 642, 733, 641, 783, 703, 783, 702, 723, 697, 669, 686, 620, 674, 588, 657, 553, 637, 521, 611, 489, 581, 464, 547, 449, 512, 444, 480, 446, 448, 458, 411, 486, 383, 522, 358, 565, 339, 613, 328, 652, 320, 713)
+
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
+[connection signal="input_event" from="WhiteArea" to="." method="_on_white_area_input_event"]
+[connection signal="input_event" from="OrangeArea" to="." method="_on_orange_area_input_event"]
+[connection signal="input_event" from="GreenArea" to="." method="_on_green_area_input_event"]
+[connection signal="input_event" from="BlueArea" to="." method="_on_blue_area_input_event"]
+[connection signal="input_event" from="RedArea" to="." method="_on_red_area_input_event"]

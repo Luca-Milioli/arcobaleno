@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://b58mhp2m3rr8y"]
+
+[ext_resource type="PackedScene" uid="uid://mgklm4qm7xq8" path="res://scenes/popups/tutorial.tscn" id="1_wdb7a"]
+[ext_resource type="PackedScene" uid="uid://cixb2slrwfeax" path="res://scenes/components/custom_button.tscn" id="2_rb0lb"]
+[ext_resource type="FontFile" uid="uid://c3ii6qbpg4ulc" path="res://art/font/Roc_Grotesk_Bold.ttf" id="3_vgje1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tvmof"]
+font = ExtResource("3_vgje1")
+font_size = 32
+font_color = Color(0.0588235, 0.47451, 0.529412, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2xcqb"]
+font = ExtResource("3_vgje1")
+font_size = 32
+font_color = Color(0.0588235, 0.47451, 0.529412, 1)
+
+[node name="ResetPopup" instance=ExtResource("1_wdb7a")]
+
+[node name="Title" parent="." index="1"]
+text = "Vuoi ricominciare?"
+
+[node name="Advice" parent="." index="2"]
+offset_bottom = 44.0
+text = "Il gioco ripartirà da capo e dovrai ricominciare.
+ Sei sicuro?
+"
+autowrap_mode = 3
+
+[node name="SplitContainer" parent="." index="3"]
+dragging_enabled = false
+dragger_visibility = 1
+
+[node name="Nope" parent="SplitContainer" index="0" instance=ExtResource("2_rb0lb")]
+custom_minimum_size = Vector2(240.5, 62)
+layout_mode = 2
+
+[node name="Text" parent="SplitContainer/Nope" index="0"]
+text = "Annulla"
+label_settings = SubResource("LabelSettings_tvmof")
+
+[node name="Text" parent="SplitContainer/Go" index="0"]
+text = "Ricomincia"
+label_settings = SubResource("LabelSettings_2xcqb")
+
+[connection signal="pressed" from="SplitContainer/Nope" to="." method="_on_nope_pressed"]
+
+[editable path="SplitContainer/Nope"]
+[editable path="SplitContainer/Go"]

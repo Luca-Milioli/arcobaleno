@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://fqf6gbptn0x2"]
+
+[ext_resource type="PackedScene" uid="uid://mgklm4qm7xq8" path="res://scenes/popups/tutorial.tscn" id="1_hxsp3"]
+[ext_resource type="FontFile" uid="uid://c3ii6qbpg4ulc" path="res://art/font/Roc_Grotesk_Bold.ttf" id="2_li5c7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_cwvm3"]
+font = ExtResource("2_li5c7")
+font_size = 30
+font_color = Color(0, 0, 0, 1)
+
+[node name="FeedbackColor" instance=ExtResource("1_hxsp3")]
+offset_bottom = 378.0
+
+[node name="Title" parent="." index="1"]
+offset_bottom = 120.0
+text = "Complimenti hai terminato il gruppo! Sai che..."
+label_settings = SubResource("LabelSettings_cwvm3")
+
+[node name="Advice" parent="." index="2"]
+offset_top = -53.0
+offset_bottom = 55.0
+
+[node name="Text" parent="SplitContainer/Go" index="0"]
+text = "Continua"
+
+[editable path="SplitContainer/Go"]

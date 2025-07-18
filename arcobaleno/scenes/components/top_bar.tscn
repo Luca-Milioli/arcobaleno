@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://bieiqc1mo6u2r"]
+
+[ext_resource type="Script" uid="uid://bmiggjbmuli46" path="res://scripts/gui/components/top_bar.gd" id="1_bywe0"]
+[ext_resource type="Texture2D" uid="uid://dds2thn75cdgj" path="res://art/graphics/buttons/audio_off_button.png" id="2_p8s5q"]
+[ext_resource type="Texture2D" uid="uid://ct58rv31uncyb" path="res://art/graphics/buttons/audio_off_hover.png" id="3_nts21"]
+[ext_resource type="Texture2D" uid="uid://br64pyxmhgmr5" path="res://art/graphics/buttons/replay_button.png" id="4_glubf"]
+[ext_resource type="Texture2D" uid="uid://h3wk2x73wtmc" path="res://art/graphics/buttons/audio_on_button.png" id="4_nts21"]
+[ext_resource type="Texture2D" uid="uid://beyptf180ea2r" path="res://art/graphics/buttons/replay_hover.png" id="5_amswt"]
+[ext_resource type="Texture2D" uid="uid://cih1sgt2w4376" path="res://art/graphics/buttons/audio_on_hover.png" id="5_glubf"]
+
+[node name="TopBar" type="HBoxContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -394.0
+offset_top = -355.0
+offset_right = 394.0
+offset_bottom = -291.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 30
+script = ExtResource("1_bywe0")
+
+[node name="AudioButton" type="TextureButton" parent="."]
+visible = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture_normal = ExtResource("2_p8s5q")
+texture_hover = ExtResource("3_nts21")
+ignore_texture_size = true
+
+[node name="NextAudioButton" type="TextureButton" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture_normal = ExtResource("4_nts21")
+texture_hover = ExtResource("5_glubf")
+ignore_texture_size = true
+
+[node name="Text" type="Label" parent="."]
+custom_minimum_size = Vector2(600, 64)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RetryButton" type="TextureButton" parent="."]
+visible = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture_normal = ExtResource("4_glubf")
+texture_hover = ExtResource("5_amswt")
+ignore_texture_size = true
+
+[connection signal="pressed" from="AudioButton" to="." method="_on_audio_button_pressed"]
+[connection signal="pressed" from="NextAudioButton" to="." method="_on_audio_button_pressed"]
+[connection signal="pressed" from="RetryButton" to="." method="_on_retry_button_pressed"]

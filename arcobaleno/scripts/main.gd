@@ -1,37 +1,25 @@
 extends Node
 
-var gui: Control
+func _on_tree_entered() -> void:
+	GameLogic.win.connect(_on_win)
+	GameLogic.connect_to_target($Gui)
+	$Gui/ResetPopup.game_start.connect(_on_replay)
 
-func _on_menu_play_pressed() -> void:
+func _on_menu_play_pressed() -> void:	# no more start menu -> unused
 	var start_menu = get_node("StartMenu")
 	remove_child(start_menu)
 	start_menu.queue_free()
-	
-	gui = preload("res://scenes/gui.tscn").instantiate()
-	GameLogic.connect_to_target(gui)
-	
-	add_child(gui)
-	
-	GameLogic.win.connect(_on_win)
 
 func _on_win() -> void:
-	await gui.finished
+	await $Gui.finished
 	
-	var end_menu = preload("res://scenes/end_menu.tscn").instantiate()
+	var end_menu = preload("res://scenes/main_gui/menu/end_menu.tscn").instantiate()
 	
-	remove_child(gui)
-	
+	$Gui.queue_free()
 	add_child(end_menu)
-	gui.queue_free()
 	
-	end_menu.play_pressed.connect(_on_end_menu_play_pressed)
+	end_menu.connect_replay(_on_replay)
 
-func _on_end_menu_play_pressed() -> void:
+func _on_replay() -> void:
 	GameLogic.reset()
 	get_tree().reload_current_scene()
-
-func _on_audio_pressed() -> void:
-	pass # Replace with function body.
-
-func _on_retry_pressed() -> void:
-	pass # Replace with function body.

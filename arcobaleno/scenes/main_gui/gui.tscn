@@ -1,0 +1,157 @@
+[gd_scene load_steps=12 format=3 uid="uid://bi1alhp0os1qy"]
+
+[ext_resource type="Script" uid="uid://0jvc416ci5kj" path="res://scripts/gui/main_ui/gui.gd" id="1_8h14w"]
+[ext_resource type="Texture2D" uid="uid://pbw56s4em4p8" path="res://art/graphics/backgrounds/gui_background.jpg" id="2_k8xsf"]
+[ext_resource type="PackedScene" uid="uid://dewp41breffhx" path="res://scenes/components/rainbow.tscn" id="3_gn6ma"]
+[ext_resource type="PackedScene" uid="uid://bieiqc1mo6u2r" path="res://scenes/components/top_bar.tscn" id="6_2trg8"]
+[ext_resource type="FontFile" uid="uid://btuhlt2wotj04" path="res://art/font/SkippySharp.ttf" id="7_k8xsf"]
+[ext_resource type="PackedScene" uid="uid://6tfd4fibix5d" path="res://scenes/components/fruit_container.tscn" id="7_pstwf"]
+[ext_resource type="PackedScene" uid="uid://b58mhp2m3rr8y" path="res://scenes/popups/reset_popup.tscn" id="9_gn6ma"]
+[ext_resource type="Texture2D" uid="uid://cyoc7pcvf6q62" path="res://art/graphics/buttons/arrow.png" id="10_q406m"]
+[ext_resource type="PackedScene" uid="uid://mgklm4qm7xq8" path="res://scenes/popups/tutorial.tscn" id="10_w77y4"]
+[ext_resource type="PackedScene" uid="uid://fqf6gbptn0x2" path="res://scenes/popups/feedback_color.tscn" id="11_q406m"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gn6ma"]
+font = ExtResource("7_k8xsf")
+font_size = 40
+font_color = Color(0, 0, 0, 1)
+
+[node name="Gui" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_8h14w")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_k8xsf")
+
+[node name="Rainbow" parent="." instance=ExtResource("3_gn6ma")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -393.0
+offset_top = -243.0
+offset_right = 393.01
+offset_bottom = 155.0
+mouse_filter = 1
+
+[node name="TopBar" parent="." instance=ExtResource("6_2trg8")]
+layout_mode = 1
+
+[node name="Text" parent="TopBar" index="2"]
+text = "Risolvi l’operazione con i dati che hai raccolto!"
+label_settings = SubResource("LabelSettings_gn6ma")
+
+[node name="FruitContainer" parent="." instance=ExtResource("7_pstwf")]
+layout_mode = 1
+offset_left = -328.0
+offset_top = 234.0
+offset_right = 328.0
+offset_bottom = 335.0
+
+[node name="ResetPopup" parent="." instance=ExtResource("9_gn6ma")]
+visible = false
+top_level = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -306.0
+offset_top = -177.0
+offset_right = 306.0
+offset_bottom = 177.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TutorialPopup" parent="." instance=ExtResource("10_w77y4")]
+visible = false
+top_level = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -306.0
+offset_top = -145.0
+offset_right = 306.0
+offset_bottom = 145.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FeedbackColor" parent="." instance=ExtResource("11_q406m")]
+visible = false
+top_level = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -306.0
+offset_top = -189.0
+offset_right = 306.0
+offset_bottom = 189.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LeftArrow" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -404.0
+offset_top = 242.0
+offset_right = -327.0
+offset_bottom = 319.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("10_q406m")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="RightArrow" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 327.0
+offset_top = 242.0
+offset_right = 404.0
+offset_bottom = 319.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("10_q406m")
+ignore_texture_size = true
+stretch_mode = 3
+flip_h = true
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
+[connection signal="audio_pressed" from="TopBar" to="." method="_on_top_bar_audio_pressed"]
+[connection signal="retry_pressed" from="TopBar" to="." method="_on_top_bar_retry_pressed"]
+[connection signal="cancel" from="ResetPopup" to="." method="_on_reset_popup_cancel"]
+[connection signal="game_start" from="TutorialPopup" to="." method="_on_tutorial_popup_game_start"]
+[connection signal="pressed" from="LeftArrow" to="." method="_on_left_arrow_pressed"]
+[connection signal="pressed" from="RightArrow" to="." method="_on_right_arrow_pressed"]
+
+[editable path="TopBar"]
