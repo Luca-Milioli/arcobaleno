@@ -36,7 +36,6 @@ func get_image() -> String:
 
 func set_dragging(dragging: bool) -> void:
 	self.dragging = dragging
-	
 
 func is_dragged() -> bool:
 	return self.dragging
