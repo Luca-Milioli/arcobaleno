@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5dkwylggc7rg"
-path="res://.godot/imported/rainbow.png-78762a39fea96eae632e2168f8ddec03.ctex"
+uid="uid://ci4j8m26c8lub"
+path="res://.godot/imported/melanzana.png-145aa50b097c18efd437a7bd2d636f19.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/graphics/rainbow.png"
-dest_files=["res://.godot/imported/rainbow.png-78762a39fea96eae632e2168f8ddec03.ctex"]
+source_file="res://art/graphics/fruit/melanzana.png"
+dest_files=["res://.godot/imported/melanzana.png-145aa50b097c18efd437a7bd2d636f19.ctex"]
 
 [params]
 

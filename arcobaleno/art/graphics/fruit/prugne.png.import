@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5dkwylggc7rg"
-path="res://.godot/imported/rainbow.png-78762a39fea96eae632e2168f8ddec03.ctex"
+uid="uid://dmvpco7dk1pg8"
+path="res://.godot/imported/prugne.png-a02eaa0c8bedf99060d1f1f4a678bc05.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/graphics/rainbow.png"
-dest_files=["res://.godot/imported/rainbow.png-78762a39fea96eae632e2168f8ddec03.ctex"]
+source_file="res://art/graphics/fruit/prugne.png"
+dest_files=["res://.godot/imported/prugne.png-a02eaa0c8bedf99060d1f1f4a678bc05.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5dkwylggc7rg"
-path="res://.godot/imported/rainbow.png-78762a39fea96eae632e2168f8ddec03.ctex"
+uid="uid://cie55umu32blm"
+path="res://.godot/imported/carote.png-b08b8eb9d980dd576e03de5e47a5b48f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/graphics/rainbow.png"
-dest_files=["res://.godot/imported/rainbow.png-78762a39fea96eae632e2168f8ddec03.ctex"]
+source_file="res://art/graphics/fruit/carote.png"
+dest_files=["res://.godot/imported/carote.png-b08b8eb9d980dd576e03de5e47a5b48f.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5dkwylggc7rg"
-path="res://.godot/imported/rainbow.png-78762a39fea96eae632e2168f8ddec03.ctex"
+uid="uid://3ln15t3k3l3l"
+path="res://.godot/imported/audio_off_hover.png-5a3dca3b3c1c35bb76b71585c28a6734.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/graphics/rainbow.png"
-dest_files=["res://.godot/imported/rainbow.png-78762a39fea96eae632e2168f8ddec03.ctex"]
+source_file="res://art/graphics/buttons/audio_off_hover.png"
+dest_files=["res://.godot/imported/audio_off_hover.png-5a3dca3b3c1c35bb76b71585c28a6734.ctex"]
 
 [params]
 

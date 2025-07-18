@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5dkwylggc7rg"
-path="res://.godot/imported/rainbow.png-78762a39fea96eae632e2168f8ddec03.ctex"
+uid="uid://cxy5mft0eudnl"
+path="res://.godot/imported/radicchio.png-9509d9a5cf7bc7524f0b43bd4e5d3456.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/graphics/rainbow.png"
-dest_files=["res://.godot/imported/rainbow.png-78762a39fea96eae632e2168f8ddec03.ctex"]
+source_file="res://art/graphics/fruit/radicchio.png"
+dest_files=["res://.godot/imported/radicchio.png-9509d9a5cf7bc7524f0b43bd4e5d3456.ctex"]
 
 [params]
 

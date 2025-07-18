@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5dkwylggc7rg"
-path="res://.godot/imported/rainbow.png-78762a39fea96eae632e2168f8ddec03.ctex"
+uid="uid://cr8dtffalq4oc"
+path="res://.godot/imported/replay_button.png-f759c4ca6b96625ed90fbc11607734e7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/graphics/rainbow.png"
-dest_files=["res://.godot/imported/rainbow.png-78762a39fea96eae632e2168f8ddec03.ctex"]
+source_file="res://art/graphics/buttons/replay_button.png"
+dest_files=["res://.godot/imported/replay_button.png-f759c4ca6b96625ed90fbc11607734e7.ctex"]
 
 [params]
 

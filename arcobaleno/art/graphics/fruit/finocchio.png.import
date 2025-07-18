@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5dkwylggc7rg"
-path="res://.godot/imported/rainbow.png-78762a39fea96eae632e2168f8ddec03.ctex"
+uid="uid://bwe0gt0tjg0pf"
+path="res://.godot/imported/finocchio.png-134255b7efe9d9c502ad37a1a4e16836.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/graphics/rainbow.png"
-dest_files=["res://.godot/imported/rainbow.png-78762a39fea96eae632e2168f8ddec03.ctex"]
+source_file="res://art/graphics/fruit/finocchio.png"
+dest_files=["res://.godot/imported/finocchio.png-134255b7efe9d9c502ad37a1a4e16836.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5dkwylggc7rg"
-path="res://.godot/imported/rainbow.png-78762a39fea96eae632e2168f8ddec03.ctex"
+uid="uid://buxkofctvnp1t"
+path="res://.godot/imported/frutti di bosco.png-6dd306118e9772a2adad2855c2cf2430.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/graphics/rainbow.png"
-dest_files=["res://.godot/imported/rainbow.png-78762a39fea96eae632e2168f8ddec03.ctex"]
+source_file="res://art/graphics/fruit/frutti di bosco.png"
+dest_files=["res://.godot/imported/frutti di bosco.png-6dd306118e9772a2adad2855c2cf2430.ctex"]
 
 [params]
 

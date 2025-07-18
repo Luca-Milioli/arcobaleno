@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5dkwylggc7rg"
-path="res://.godot/imported/rainbow.png-78762a39fea96eae632e2168f8ddec03.ctex"
+uid="uid://cl1qogpoc7n37"
+path="res://.godot/imported/kiwi.png-72bf27fb45fead7b12f0173070271b04.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/graphics/rainbow.png"
-dest_files=["res://.godot/imported/rainbow.png-78762a39fea96eae632e2168f8ddec03.ctex"]
+source_file="res://art/graphics/fruit/kiwi.png"
+dest_files=["res://.godot/imported/kiwi.png-72bf27fb45fead7b12f0173070271b04.ctex"]
 
 [params]
 

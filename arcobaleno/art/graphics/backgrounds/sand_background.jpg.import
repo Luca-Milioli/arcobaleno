@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5dkwylggc7rg"
-path="res://.godot/imported/rainbow.png-78762a39fea96eae632e2168f8ddec03.ctex"
+uid="uid://w73xm7kkcx8"
+path="res://.godot/imported/sand_background.jpg-708d71bf608d4db971e762166f0f377a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/graphics/rainbow.png"
-dest_files=["res://.godot/imported/rainbow.png-78762a39fea96eae632e2168f8ddec03.ctex"]
+source_file="res://art/graphics/backgrounds/sand_background.jpg"
+dest_files=["res://.godot/imported/sand_background.jpg-708d71bf608d4db971e762166f0f377a.ctex"]
 
 [params]
 

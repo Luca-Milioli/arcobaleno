@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5dkwylggc7rg"
-path="res://.godot/imported/rainbow.png-78762a39fea96eae632e2168f8ddec03.ctex"
+uid="uid://cjd3sdt6e51y3"
+path="res://.godot/imported/start_menu.jpg-ead6e929bdcac241045ceac9399c96b1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/graphics/rainbow.png"
-dest_files=["res://.godot/imported/rainbow.png-78762a39fea96eae632e2168f8ddec03.ctex"]
+source_file="res://art/graphics/backgrounds/start_menu.jpg"
+dest_files=["res://.godot/imported/start_menu.jpg-ead6e929bdcac241045ceac9399c96b1.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5dkwylggc7rg"
-path="res://.godot/imported/rainbow.png-78762a39fea96eae632e2168f8ddec03.ctex"
+uid="uid://cy1e2tusykagr"
+path="res://.godot/imported/zucchina.png-3c99e15f726cbe9334d748b412c612cd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/graphics/rainbow.png"
-dest_files=["res://.godot/imported/rainbow.png-78762a39fea96eae632e2168f8ddec03.ctex"]
+source_file="res://art/graphics/fruit/zucchina.png"
+dest_files=["res://.godot/imported/zucchina.png-3c99e15f726cbe9334d748b412c612cd.ctex"]
 
 [params]
 
