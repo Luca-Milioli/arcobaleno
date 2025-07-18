@@ -1,12 +1,16 @@
 [gd_scene load_steps=8 format=3 uid="uid://bieiqc1mo6u2r"]
 
 [ext_resource type="Script" uid="uid://bmiggjbmuli46" path="res://scripts/gui/components/top_bar.gd" id="1_bywe0"]
-[ext_resource type="Texture2D" uid="uid://dds2thn75cdgj" path="res://art/graphics/buttons/audio_off_button.png" id="2_p8s5q"]
-[ext_resource type="Texture2D" uid="uid://ct58rv31uncyb" path="res://art/graphics/buttons/audio_off_hover.png" id="3_nts21"]
-[ext_resource type="Texture2D" uid="uid://br64pyxmhgmr5" path="res://art/graphics/buttons/replay_button.png" id="4_glubf"]
-[ext_resource type="Texture2D" uid="uid://h3wk2x73wtmc" path="res://art/graphics/buttons/audio_on_button.png" id="4_nts21"]
-[ext_resource type="Texture2D" uid="uid://beyptf180ea2r" path="res://art/graphics/buttons/replay_hover.png" id="5_amswt"]
-[ext_resource type="Texture2D" uid="uid://cih1sgt2w4376" path="res://art/graphics/buttons/audio_on_hover.png" id="5_glubf"]
+[ext_resource type="Texture2D" uid="uid://cuia07okbe14n" path="res://art/graphics/buttons/audio_off_button.png" id="2_p8s5q"]
+[ext_resource type="Texture2D" uid="uid://dds2thn75cdgj" path="res://art/graphics/buttons/audio_off_hover.png" id="3_bywe0"]
+[ext_resource type="Texture2D" uid="uid://d21rv6i4fdrv0" path="res://art/graphics/buttons/replay_button.png" id="4_glubf"]
+[ext_resource type="Texture2D" uid="uid://cel8xud475ymc" path="res://art/graphics/buttons/audio_on_button.png" id="4_nts21"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bywe0"]
+load_path = "res://.godot/imported/audio_on_hover.png-457db6d41365f1945f17801ddc27a711.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_p8s5q"]
+load_path = "res://.godot/imported/replay_hover.png-551a56d4a9ee4617f785b3c389237464.ctex"
 
 [node name="TopBar" type="HBoxContainer"]
 anchors_preset = 8
@@ -29,14 +33,14 @@ visible = false
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture_normal = ExtResource("2_p8s5q")
-texture_hover = ExtResource("3_nts21")
+texture_hover = ExtResource("3_bywe0")
 ignore_texture_size = true
 
 [node name="NextAudioButton" type="TextureButton" parent="."]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture_normal = ExtResource("4_nts21")
-texture_hover = ExtResource("5_glubf")
+texture_hover = SubResource("CompressedTexture2D_bywe0")
 ignore_texture_size = true
 
 [node name="Text" type="Label" parent="."]
@@ -51,7 +55,7 @@ visible = false
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture_normal = ExtResource("4_glubf")
-texture_hover = ExtResource("5_amswt")
+texture_hover = SubResource("CompressedTexture2D_p8s5q")
 ignore_texture_size = true
 
 [connection signal="pressed" from="AudioButton" to="." method="_on_audio_button_pressed"]

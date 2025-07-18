@@ -1,7 +1,6 @@
 extends DataManager
 
 const TOTAL_ITEMS = 10
-const TOTAL_SLOT = 6
 
 var _data = []
 var n_lines
@@ -9,7 +8,7 @@ var n_columns
 
 func get_data() -> Array:
 	if self._data.is_empty():
-		self._data = super._read_csv("|")
+		self._data = super._read_csv()
 		self.n_lines = self._data.size()
 		self.n_columns = self._data[0].size()
 	return self._data
@@ -59,7 +58,7 @@ func create_fruits() -> Array[Fruit]:
 	var fruit_scenes: Array[Fruit]
 	for fruit in shuffled_keys:
 		var new_fruit = preload("res://scenes/components/fruit.tscn").instantiate()
-		new_fruit.setup(fruit.to_lower(), fruits[fruit])
+		new_fruit.setup(fruit, fruits[fruit])
 		fruit_scenes.append(new_fruit)
 	
 	return fruit_scenes

@@ -10,6 +10,9 @@ func _on_menu_play_pressed() -> void:	# no more start menu -> unused
 	remove_child(start_menu)
 	start_menu.queue_free()
 
+func _on_site_pressed() -> void:
+	get_tree().quit()
+
 func _on_win() -> void:
 	await $Gui.finished
 	
@@ -19,6 +22,7 @@ func _on_win() -> void:
 	add_child(end_menu)
 	
 	end_menu.connect_replay(_on_replay)
+	end_menu.site_pressed.connect(_on_site_pressed)
 
 func _on_replay() -> void:
 	GameLogic.reset()

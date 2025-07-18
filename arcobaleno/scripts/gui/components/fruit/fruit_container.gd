@@ -1,5 +1,9 @@
 extends HBoxContainer
 
+const TOTAL_SLOT = 6
+
+signal enough_slot
+
 func _ready() -> void:
 	_create_slot()
 	
@@ -9,7 +13,7 @@ func _create_slot() -> void:
 	for i in range(FruitFactory.TOTAL_ITEMS):
 		var slot = preload("res://scenes/components/slot.tscn").instantiate()
 		add_child(slot)
-		if i >= FruitFactory.TOTAL_SLOT:
+		if i >= TOTAL_SLOT:
 			slot.visible = false
 
 func _start_fruits(fruits: Array[Fruit]) -> void:
@@ -17,15 +21,16 @@ func _start_fruits(fruits: Array[Fruit]) -> void:
 		get_child(i).add_child(fruits[i])
 
 func _swap_visibility(enter: Slot, exit: Slot) -> void:
+	_animate_entering(enter)
 	enter.visible = true
 	exit.visible = false
 
 func shift_right() -> void:
 	var child_count = get_child_count()
-	if child_count <= FruitFactory.TOTAL_SLOT:
+	if child_count <= TOTAL_SLOT:
 		return
 	
-	var exiter = get_child(FruitFactory.TOTAL_SLOT - 1)
+	var exiter = get_child(TOTAL_SLOT - 1)
 	var enterer = get_child(child_count - 1) as Slot
 	
 	var original_positions = get_children_global_positions()
@@ -38,14 +43,14 @@ func shift_right() -> void:
 	_animate_children(original_positions, true)
 
 func shift_left() -> void:
-	if get_child_count() <= FruitFactory.TOTAL_SLOT:
+	if get_child_count() <= TOTAL_SLOT:
 		return
 	
 	var exiter = get_child(0)
-	var enterer = get_child(FruitFactory.TOTAL_SLOT) as Slot
+	var enterer = get_child(TOTAL_SLOT) as Slot
 	
 	var original_positions = get_children_global_positions()
-	var last = get_child(FruitFactory.TOTAL_SLOT - 1) as Slot
+	var last = get_child(TOTAL_SLOT - 1) as Slot
 	original_positions[enterer] = original_positions[last] + Vector2(get_theme_constant("separation") + last.size.x, 0)
 	
 	move_child(exiter, -1)
@@ -56,18 +61,22 @@ func shift_left() -> void:
 func moved(moved_fruit: Fruit) -> void:
 	var empty_slot: Slot = moved_fruit.get_parent()
 	empty_slot.remove_child(moved_fruit)	# we'll queue_free the slot but we don't want to lose the fruit	
-	var new_visible: Slot = get_child(FruitFactory.TOTAL_SLOT) as Slot
+	var new_visible: Slot = get_child(TOTAL_SLOT) as Slot
 	
 	var original_positions = get_children_global_positions(empty_slot)
 	
 	if new_visible:
-		var last = get_child(FruitFactory.TOTAL_SLOT - 1) as Slot
+		var last = get_child(TOTAL_SLOT - 1) as Slot
 		if original_positions.is_empty():
 			original_positions[last] = last.global_position
 		original_positions[new_visible] = original_positions[last] + Vector2(get_theme_constant("separation") + last.size.x, 0)
 		if last == empty_slot:
 			original_positions.erase(last)
+		_animate_entering(new_visible)
 		new_visible.visible = true
+	
+	if get_child_count() - 1 == TOTAL_SLOT:		# must check before queue_free (or i have to wait a frame and bug animation)
+		self.enough_slot.emit()
 	
 	empty_slot.queue_free()
 	
@@ -98,3 +107,12 @@ func _animate_children(old_position: Dictionary[Slot, Vector2], direction_right:
 		slot.global_position = old_position[slot]  # Bring back temporarly
 		tween.tween_property(slot, "global_position", new_pos, 0.8).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
 		#tween.tween_property(slot, "global_position", new_pos, 0.3).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+
+func _animate_entering(slot: Slot):
+	slot.modulate.a = 0
+	slot.visible = true
+	
+	var tween := create_tween()
+	tween.set_parallel()
+	
+	tween.tween_property(slot, "modulate:a", 1, 0.8).set_ease(Tween.EASE_OUT)

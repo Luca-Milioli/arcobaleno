@@ -16,7 +16,7 @@ func is_dropped() -> bool:
 	return self._dropped
 	
 func setup(name: String, group: GameLogic.GROUPS) -> void:
-	set_image("art/graphics/fruit/" + name + ".png")
+	set_image("art/graphics/fruit/" + name.to_lower() + ".png")	# image name must be consistent with csv
 	set_name(name)
 	set_group(group)
 

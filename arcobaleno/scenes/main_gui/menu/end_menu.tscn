@@ -1,12 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://c2l3uqf1y2a8m"]
+[gd_scene load_steps=11 format=3 uid="uid://c2l3uqf1y2a8m"]
 
 [ext_resource type="PackedScene" uid="uid://cixb2slrwfeax" path="res://scenes/components/custom_button.tscn" id="1_c01dn"]
 [ext_resource type="PackedScene" uid="uid://c4yr5c4nqiyfs" path="res://scenes/main_gui/menu/start_menu.tscn" id="1_fpl1s"]
 [ext_resource type="Texture2D" uid="uid://dw10a283pufsr" path="res://art/graphics/backgrounds/end_menu.jpg" id="3_87tj7"]
 [ext_resource type="FontFile" uid="uid://btuhlt2wotj04" path="res://art/font/SkippySharp.ttf" id="4_0yb4r"]
-[ext_resource type="Texture2D" uid="uid://b6cewtwyavtke" path="res://art/graphics/buttons/button_hover.png" id="4_wqo5a"]
 [ext_resource type="PackedScene" uid="uid://bieiqc1mo6u2r" path="res://scenes/components/top_bar.tscn" id="5_0aktc"]
-[ext_resource type="Texture2D" uid="uid://ddperml6v3a0w" path="res://art/graphics/buttons/button.png" id="5_nsqeq"]
 [ext_resource type="FontFile" uid="uid://by2fsotvgiu72" path="res://art/font/Roc_Grotesk_Medium.ttf" id="7_o811m"]
 [ext_resource type="PackedScene" uid="uid://b58mhp2m3rr8y" path="res://scenes/popups/reset_popup.tscn" id="8_0yb4r"]
 
@@ -14,27 +12,6 @@
 font = ExtResource("4_0yb4r")
 font_size = 50
 font_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bfr1r"]
-texture = ExtResource("4_wqo5a")
-texture_margin_left = 32.0
-texture_margin_top = 32.0
-texture_margin_right = 32.0
-texture_margin_bottom = 40.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yt7k8"]
-texture = ExtResource("4_wqo5a")
-texture_margin_left = 32.0
-texture_margin_top = 32.0
-texture_margin_right = 32.0
-texture_margin_bottom = 40.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_32hcy"]
-texture = ExtResource("5_nsqeq")
-texture_margin_left = 32.0
-texture_margin_top = 32.0
-texture_margin_right = 32.0
-texture_margin_bottom = 40.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_o8wmd"]
 font = ExtResource("7_o811m")
@@ -65,9 +42,6 @@ offset_left = 11.75
 offset_top = 234.0
 offset_right = 234.75
 offset_bottom = 306.0
-theme_override_styles/hover = SubResource("StyleBoxTexture_bfr1r")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_yt7k8")
-theme_override_styles/normal = SubResource("StyleBoxTexture_32hcy")
 
 [node name="Text" parent="PlayButton" index="0"]
 text = "Rigioca"
@@ -79,9 +53,6 @@ offset_left = -235.25
 offset_top = 234.0
 offset_right = -12.25
 offset_bottom = 306.0
-theme_override_styles/hover = SubResource("StyleBoxTexture_bfr1r")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_yt7k8")
-theme_override_styles/normal = SubResource("StyleBoxTexture_32hcy")
 
 [node name="Text" parent="SiteButton" index="0"]
 text = "Torna al sito"
@@ -106,6 +77,7 @@ grow_vertical = 2
 [node name="TopBar" parent="." index="5" instance=ExtResource("5_0aktc")]
 layout_mode = 1
 
+[connection signal="pressed" from="SiteButton" to="." method="_on_site_pressed"]
 [connection signal="cancel" from="ResetPopup" to="." method="_on_reset_popup_cancel"]
 [connection signal="audio_pressed" from="TopBar" to="." method="_on_top_bar_audio_pressed"]
 [connection signal="retry_pressed" from="TopBar" to="." method="_on_top_bar_retry_pressed"]

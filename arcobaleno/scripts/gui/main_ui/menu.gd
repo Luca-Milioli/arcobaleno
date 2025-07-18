@@ -1,7 +1,7 @@
 extends CommonUI
 
 signal play_pressed
-signal back_pressed
+signal site_pressed
 
 func connect_replay(method: Callable) -> void: # chiamato dal main solo su end_menu
 	self.play_pressed.connect(method)
@@ -10,8 +10,10 @@ func connect_replay(method: Callable) -> void: # chiamato dal main solo su end_m
 func _on_play_pressed() -> void:
 	self.play_pressed.emit()
 
-func _on_back_pressed() -> void:
-	back_pressed.emit()
+
+func _on_site_pressed() -> void:
+	self.site_pressed.emit()
+
 
 func _on_tree_entered() -> void:
 	var tween = create_tween()

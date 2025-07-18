@@ -68,3 +68,8 @@ func _on_left_arrow_pressed() -> void:
 
 func _on_right_arrow_pressed() -> void:
 	$FruitContainer.shift_right()
+
+
+func _on_enough_slot() -> void:
+	$LeftArrow.visible = false
+	$RightArrow.visible = false
