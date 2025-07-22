@@ -23,8 +23,6 @@ func _start_fruits(fruits: Array[Fruit]) -> void:
 func _swap_visibility(enter: Slot, exit: Slot) -> void:
 	_animate_enter_or_exit(enter, true)
 	_animate_enter_or_exit(exit, false)
-	#enter.visible = true
-	#exit.visible = false
 
 func shift_right() -> void:
 	var child_count = get_child_count()
@@ -53,16 +51,17 @@ func shift_left() -> void:
 	var original_positions = get_children_global_positions()
 	var last = get_child(TOTAL_SLOT - 1) as Slot
 	original_positions[enterer] = original_positions[last] + Vector2(get_theme_constant("separation") + last.size.x, 0)
-	original_positions.erase(exiter)
 	
 	move_child(exiter, -1)
 	_swap_visibility(enterer, exiter)
 	
-	_animate_children(original_positions, false)
+	_animate_children(original_positions, false, exiter)
 
 func moved(moved_fruit: Fruit) -> void:
 	var empty_slot: Slot = moved_fruit.get_parent()
 	empty_slot.remove_child(moved_fruit)	# we'll queue_free the slot but we don't want to lose the fruit	
+	
+	_animate_enter_or_exit(empty_slot, false)
 	var new_visible: Slot = get_child(TOTAL_SLOT) as Slot
 	
 	var original_positions = get_children_global_positions(empty_slot)
@@ -74,14 +73,14 @@ func moved(moved_fruit: Fruit) -> void:
 		original_positions[new_visible] = original_positions[last] + Vector2(get_theme_constant("separation") + last.size.x, 0)
 		if last == empty_slot:
 			original_positions.erase(last)
-		_animate_enter_or_exit(new_visible, true)
-		new_visible.visible = true
 	
 	if get_child_count() - 1 == TOTAL_SLOT:		# must check before queue_free (or i have to wait a frame and bug animation)
 		self.enough_slot.emit()
 	
 	empty_slot.queue_free()
-	_animate_children(original_positions, false)
+	_animate_on_move(original_positions)
+	if new_visible:
+		_animate_enter_or_exit(new_visible, true)
 
 func get_children_global_positions(from: Slot = null) -> Dictionary[Slot, Vector2]:
 	var positions: Dictionary[Slot, Vector2]
@@ -95,19 +94,34 @@ func get_children_global_positions(from: Slot = null) -> Dictionary[Slot, Vector
 		
 	return positions
 
-func _animate_children(old_position: Dictionary[Slot, Vector2], direction_right: bool) -> void: 
+func _animate_children(old_position: Dictionary[Slot, Vector2], direction_right: bool, exiter: Slot = null) -> void: 
 	var direction = 1 if direction_right else -1
 	var tween := create_tween()
 	tween.set_parallel()
 
 	await get_tree().process_frame  # let layout update
+	
+	if exiter:
+		exiter.global_position = old_position[exiter] - 1.5 * Vector2(exiter.size.x + get_theme_constant("separation"), 0)
+	# animate every slot from old position to new
+	for slot in old_position.keys():
+		var new_pos = slot.global_position + Vector2(slot.size.x / 2 + get_theme_constant("separation") / 2, 0)
+		slot.global_position = old_position[slot] # Bring back temporarly
+		tween.tween_property(slot, "global_position", new_pos, 0.8).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
 
+
+func _animate_on_move(old_position: Dictionary[Slot, Vector2]) -> void:
+	var tween := create_tween()
+	tween.set_parallel()
+
+	await get_tree().process_frame  # let layout update
+	
 	# animate every slot from old position to new
 	for slot in old_position.keys():
 		var new_pos = slot.global_position
-		slot.global_position = old_position[slot]  # Bring back temporarly
+		slot.global_position = old_position[slot] # Bring back temporarly
 		tween.tween_property(slot, "global_position", new_pos, 0.8).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
-		#tween.tween_property(slot, "global_position", new_pos, 0.3).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+
 
 func _animate_enter_or_exit(slot: Slot, enter: bool) -> void: # enter = true, exit = false
 	var tween := create_tween()
@@ -118,7 +132,7 @@ func _animate_enter_or_exit(slot: Slot, enter: bool) -> void: # enter = true, ex
 		slot.visible = true
 		end_modulate = 1
 	else:
-		tween.finished.connect(func(): slot.visible = false)
+		tween.finished.connect(func(): if slot: slot.visible = false)
 		end_modulate = 0
 	
 	tween.set_parallel()

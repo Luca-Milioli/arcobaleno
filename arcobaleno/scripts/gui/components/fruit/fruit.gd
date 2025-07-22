@@ -45,13 +45,14 @@ func _disable_drag() -> void:
 		self.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 func reset():
+	var relative_pos = (get_parent_area_size() - get_parent_area_size() * scale) / 2
+	await _reset_animation(get_parent().global_position + relative_pos)
 	set_anchors_preset(Control.PRESET_FULL_RECT)
 	offset_left = 0
 	offset_top = 0
 	offset_right = 0
 	offset_bottom = 0
-	scale = Vector2(0.6, 0.6)
-	position = (get_parent_area_size() - get_parent_area_size() * scale) / 2
+	position = relative_pos
 
 func _gui_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
@@ -78,3 +79,8 @@ func _unhandled_input(event):
 			await get_tree().process_frame
 			if not _dropped:
 				reset()
+
+func _reset_animation(final_position: Vector2) -> void:
+	var tween = create_tween()
+	tween.tween_property(self, "global_position", final_position, 0.3).set_trans(Tween.TRANS_QUAD)
+	await tween.finished

@@ -19,6 +19,7 @@ func _on_win() -> void:
 	
 	var end_menu = preload("res://scenes/main_gui/menu/end_menu.tscn").instantiate()
 	
+	await $Gui.kill_self()
 	$Gui.queue_free()
 	add_child(end_menu)
 	

@@ -2,10 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://cixb2slrwfeax" path="res://scenes/components/custom_button.tscn" id="1_c01dn"]
 [ext_resource type="PackedScene" uid="uid://c4yr5c4nqiyfs" path="res://scenes/main_gui/menu/start_menu.tscn" id="1_fpl1s"]
-[ext_resource type="Texture2D" uid="uid://c6t5saqqen2g6" path="res://art/graphics/backgrounds/end_menu.jpg" id="3_87tj7"]
+[ext_resource type="Texture2D" uid="uid://3hcsk3bh8gq" path="res://art/graphics/backgrounds/end_menu.jpg" id="3_87tj7"]
 [ext_resource type="FontFile" uid="uid://btuhlt2wotj04" path="res://art/font/SkippySharp.ttf" id="4_0yb4r"]
+[ext_resource type="FontFile" uid="uid://c3ii6qbpg4ulc" path="res://art/font/Roc_Grotesk_Bold.ttf" id="4_gt641"]
 [ext_resource type="PackedScene" uid="uid://bieiqc1mo6u2r" path="res://scenes/components/top_bar.tscn" id="5_0aktc"]
-[ext_resource type="FontFile" uid="uid://by2fsotvgiu72" path="res://art/font/Roc_Grotesk_Medium.ttf" id="7_o811m"]
 [ext_resource type="PackedScene" uid="uid://b58mhp2m3rr8y" path="res://scenes/popups/reset_popup.tscn" id="8_0yb4r"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_etrwl"]
@@ -14,12 +14,12 @@ font_size = 50
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_o8wmd"]
-font = ExtResource("7_o811m")
+font = ExtResource("4_gt641")
 font_size = 32
 font_color = Color(0.0588235, 0.47451, 0.529412, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_yd2yy"]
-font = ExtResource("7_o811m")
+font = ExtResource("4_gt641")
 font_size = 32
 font_color = Color(0.0588235, 0.47451, 0.529412, 1)
 

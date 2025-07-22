@@ -13,6 +13,9 @@ func _scale_collisions_shape(scale: Vector2) -> void:
 	$Rainbow/BlueArea.scale = scale
 	$Rainbow/RedArea.scale = scale
 
+func kill_self() -> void:
+	await super.fade_out(self)
+
 func _on_correct_fruit(fruit: Fruit) -> void:
 	fruit.set_dropped(true)
 	

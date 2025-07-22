@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://6tfd4fibix5d"]
 
-[ext_resource type="Script" uid="uid://dvcfvkg54880p" path="res://scripts/gui/components/fruit/fruit_container.gd" id="1_1wuwf"]
+[ext_resource type="Script" uid="uid://c8aufewfqg053" path="res://scripts/gui/components/fruit/fruit_container.gd" id="1_1wuwf"]
 
 [node name="FruitFactory" type="HBoxContainer"]
 anchors_preset = 8

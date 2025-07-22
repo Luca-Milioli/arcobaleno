@@ -31,7 +31,7 @@ func _fade(node : Node, final_node : float, final_gui : float) -> void:
 	await tween.finished
 
 func fade_in(node : Node) -> void:
-	await _fade(node, 1.2, 0.2)
+	await _fade(node, 1.0, 0.2)
 
 func fade_out(node : Node) -> void:
 	await _fade(node, 0.0, 1.0)
