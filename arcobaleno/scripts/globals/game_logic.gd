@@ -55,6 +55,7 @@ func fruit_released(fruit: Fruit, area: Area2D) -> void:
 		_on_uncorrect(fruit)
 
 func _on_correct(fruit: Fruit) -> void:
+	AudioManager.correct()
 	var group = fruit.get_group()
 	_score[group] += 1
 	self.correct_fruit.emit(fruit)
@@ -62,6 +63,7 @@ func _on_correct(fruit: Fruit) -> void:
 		_group_completed(group)
 
 func _on_uncorrect(fruit: Fruit) -> void:
+	AudioManager.wrong()
 	self.uncorrect_fruit.emit(fruit)
 
 func _group_completed(group: GROUPS) -> void:

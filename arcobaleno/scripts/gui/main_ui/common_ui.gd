@@ -22,7 +22,7 @@ func _on_reset_popup_cancel() -> void:
 
 # this fade should be done for scene transition
 # it's private and should be called from public methods fade in and fade out
-func _fade(node : Node, final_node : float, final_gui : float) -> void:
+func _fade(node : Node, final_node : float, final_gui : float, ) -> void:
 	var tween = create_tween()
 	tween.set_parallel()
 	tween.tween_property(node, "modulate:a", final_node, 0.6).set_ease(Tween.EASE_OUT)

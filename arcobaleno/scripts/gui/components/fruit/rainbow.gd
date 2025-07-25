@@ -32,19 +32,19 @@ func _get_fruits_inside_area2d(area: Area2D, from_node: Node = null) -> Array[Fr
 	return found_fruits
 
 
-func _on_red_area_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+func _on_red_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	_area_manager(event, $RedArea)
 
 
-func _on_blue_area_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+func _on_blue_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	_area_manager(event, $BlueArea)
 
 
-func _on_green_area_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+func _on_green_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	_area_manager(event, $GreenArea)
 
 
-func _on_orange_area_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+func _on_orange_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	_area_manager(event, $OrangeArea)
 
 

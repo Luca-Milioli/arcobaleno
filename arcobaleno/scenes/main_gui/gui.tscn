@@ -90,6 +90,7 @@ grow_vertical = 2
 
 [node name="FeedbackColor" parent="." instance=ExtResource("11_q406m")]
 visible = false
+modulate = Color(1, 1, 1, 0)
 top_level = true
 layout_mode = 1
 anchors_preset = 8
@@ -157,5 +158,6 @@ offset_bottom = 335.0
 [connection signal="pressed" from="LeftArrow" to="." method="_on_left_arrow_pressed"]
 [connection signal="pressed" from="RightArrow" to="." method="_on_right_arrow_pressed"]
 [connection signal="enough_slot" from="FruitContainer" to="." method="_on_enough_slot"]
+[connection signal="fruit_ready" from="FruitContainer" to="." method="_on_fruit_ready"]
 
 [editable path="TopBar"]

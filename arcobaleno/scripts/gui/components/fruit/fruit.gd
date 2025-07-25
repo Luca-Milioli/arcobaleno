@@ -2,17 +2,19 @@ extends TextureRect
 
 class_name Fruit
 
-signal is_dragging
+signal start_drag
+signal end_drag
 
 var dragging : bool = false
 var drag_offset : Vector2
 var _dropped : bool = false
-var _fruit: String
 var _group: GameLogic.GROUPS
+var _slot_parent: Slot
 
 func set_dropped(dropped: bool) -> void:
 	self._dropped = dropped
-	_disable_drag()
+	if dropped:
+		disable_drag(true)
 
 func is_dropped() -> bool:
 	return self._dropped
@@ -35,18 +37,29 @@ func get_image() -> String:
 	return get_texture().resource_path
 
 func set_dragging(dragging: bool) -> void:
+	if not self.dragging and dragging and get_parent() is Slot:
+		var global_pos = global_position
+		var real_size = size
+		self._slot_parent = get_parent()
+		self._slot_parent.remove_child(self)
+		start_drag.emit(self, global_pos, real_size)
 	self.dragging = dragging
 
 func is_dragged() -> bool:
 	return self.dragging
 
-func _disable_drag() -> void:
-	if (self._dropped):
-		self.mouse_filter = Control.MOUSE_FILTER_IGNORE
+func disable_drag(disable: bool) -> void:
+	disable = disable or self._dropped
+	self.mouse_filter = Control.MOUSE_FILTER_IGNORE if disable else Control.MOUSE_FILTER_PASS
 
 func reset():
-	var relative_pos = (get_parent_area_size() - get_parent_area_size() * scale) / 2
-	await _reset_animation(get_parent().global_position + relative_pos)
+	var relative_pos = (_slot_parent.get("size") * (Vector2(1, 1) - scale)) / 2
+	await _reset_animation(_slot_parent.global_position + relative_pos)
+	
+	if get_parent() is not Slot:
+		end_drag.emit()
+		self._slot_parent.add_child(self)
+	
 	set_anchors_preset(Control.PRESET_FULL_RECT)
 	offset_left = 0
 	offset_top = 0
@@ -55,12 +68,11 @@ func reset():
 	position = relative_pos
 
 func _gui_input(event):
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		if event.pressed:
-			set_dragging(true)
-			drag_offset = get_global_mouse_position() - global_position
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		set_dragging(true)
+		drag_offset = get_global_mouse_position() - global_position
 
-func _process(delta):
+func _process(_delta):
 	if dragging:
 		var mouse_pos = get_viewport().get_mouse_position() - drag_offset
 		var screen_size = get_viewport_rect().size

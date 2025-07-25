@@ -16,6 +16,8 @@ func _on_site_pressed() -> void:
 
 
 func _on_tree_entered() -> void:
+	if get_name() == "EndMenu":
+		AudioManager.win()
 	var tween = create_tween()
 	self.modulate.a = 0.0
 	tween.tween_property(self, "modulate:a", 1.0, 1.3)
