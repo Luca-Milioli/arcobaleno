@@ -150,7 +150,7 @@ offset_right = 328.0
 offset_bottom = 335.0
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
-[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered_with_tutorial"]
 [connection signal="audio_pressed" from="TopBar" to="." method="_on_top_bar_audio_pressed"]
 [connection signal="retry_pressed" from="TopBar" to="." method="_on_top_bar_retry_pressed"]
 [connection signal="cancel" from="ResetPopup" to="." method="_on_reset_popup_cancel"]
