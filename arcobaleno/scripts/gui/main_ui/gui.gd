@@ -85,24 +85,26 @@ func _on_group_completed(group: GameLogic.GROUPS) -> void:
 	self.finished.emit()
 
 
+func _on_tree_entered() -> void:
+	super.fade_in($".")
+
+
 func _on_tree_entered_with_tutorial() -> void:  # not connected bc no tutorial
 	Utils.recursive_disable_buttons(self, true)
 	$FruitContainer.disable_fruits(
 		$FruitContainer.get_children().filter(func(c): return c is Slot), true
 	)
-
-	$TutorialPopup.visible = true
+	
 	await super.fade_in($".")
+	
+	$TutorialPopup.visible = true
 	await super.fade_in($TutorialPopup)
 
 	Utils.recursive_disable_buttons($TutorialPopup, false)
 
 
 func _on_tutorial_popup_game_start() -> void:
-	Utils.recursive_disable_buttons(self, true)
-	$FruitContainer.disable_fruits(
-		$FruitContainer.get_children().filter(func(c): return c is Slot), true
-	)
+	Utils.recursive_disable_buttons($TutorialPopup, true)
 	await super.fade_out($TutorialPopup)
 	$TutorialPopup.queue_free()
 
@@ -110,11 +112,6 @@ func _on_tutorial_popup_game_start() -> void:
 	$FruitContainer.disable_fruits(
 		$FruitContainer.get_children().filter(func(c): return c is Slot), false
 	)
-
-
-func _on_tree_entered() -> void:
-	self.modulate.a = 0.0
-	super.fade_in($".")
 
 
 func _on_left_arrow_pressed() -> void:

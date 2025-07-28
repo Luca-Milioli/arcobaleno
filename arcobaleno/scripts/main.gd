@@ -1,7 +1,14 @@
 extends Node
 
 
-func _on_tree_entered() -> void:
+func _ready() -> void:
+	if has_node("Gui"):
+		_on_gui_entered()
+	else:
+		$StartMenu.play_pressed.connect(_on_menu_play_pressed)
+
+
+func _on_gui_entered() -> void:
 	GameLogic.win.connect(_on_win)
 	GameLogic.connect_to_target($Gui)
 	$Gui/ResetPopup.game_start.connect(_on_replay)
@@ -12,6 +19,10 @@ func _on_menu_play_pressed() -> void:  # no more start menu -> unused
 	await start_menu.kill()
 	remove_child(start_menu)
 	start_menu.queue_free()
+	
+	var gui = preload("res://scenes/main_gui/gui.tscn")
+	add_child(gui)
+	_on_gui_entered()
 
 
 func _on_site_pressed() -> void:

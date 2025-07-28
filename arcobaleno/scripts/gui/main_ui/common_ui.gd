@@ -40,6 +40,7 @@ func _fade(
 
 
 func fade_in(node: Node) -> void:
+	node.modulate.a = 0.0
 	await _fade(node, 1.0, 0.2)
 
 
