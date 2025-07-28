@@ -1,9 +1,6 @@
 extends Node
 
-const N_FRUITS: int = 10
-const N_GROUP: int = 5
-
-enum GROUPS {WHITE, ORANGE, GREEN, BLUE, RED}
+enum GROUPS { WHITE, ORANGE, GREEN, BLUE, RED }
 
 signal correct_fruit
 signal uncorrect_fruit
@@ -11,24 +8,37 @@ signal group_completed
 signal win
 
 var _score: Array[int]
-var _max_score: Array[int]
 var _n_group_completed: int = 0
+var _max_score: int
+
 
 func _ready() -> void:
-	var max_score = N_FRUITS / N_GROUP
-	for i in range(N_GROUP):
+	_start()
+	for i in range(GROUPS.size()):
 		_score.append(0)
-		_max_score.append(max_score)
+
+
+func reset_and_restart() -> void:
+	_reset()
+	_start()
+
+
+func _start() -> void:
+	self._max_score = DataManager.get_fruits_per_group()
+
 
 func connect_to_target(receiver) -> void:
 	self.correct_fruit.connect(receiver._on_correct_fruit)
 	self.uncorrect_fruit.connect(receiver._on_uncorrect_fruit)
 	self.group_completed.connect(receiver._on_group_completed)
 
-func reset() -> void:
-	for i in range(N_GROUP):
-		_score[i] = 0
-	_n_group_completed = 0
+
+func _reset() -> void:
+	self._max_score = 0
+	for i in range(GROUPS.size()):
+		self._score[i] = 0
+	self._n_group_completed = 0
+
 
 func fruit_released(fruit: Fruit, area: Area2D) -> void:
 	var group = fruit.get_group()
@@ -54,23 +64,27 @@ func fruit_released(fruit: Fruit, area: Area2D) -> void:
 	else:
 		_on_uncorrect(fruit)
 
+
 func _on_correct(fruit: Fruit) -> void:
 	AudioManager.correct()
 	var group = fruit.get_group()
 	_score[group] += 1
 	self.correct_fruit.emit(fruit)
-	if _score[group] >= _max_score[group]:
+	if _score[group] >= self._max_score:
 		_group_completed(group)
 
+
 func _on_uncorrect(fruit: Fruit) -> void:
-	AudioManager.wrong()
+	#AudioManager.wrong()	is called on Fruit.reset bc out of rainbow this method isn't called
 	self.uncorrect_fruit.emit(fruit)
+
 
 func _group_completed(group: GROUPS) -> void:
 	self._n_group_completed += 1
 	self.group_completed.emit(group)
-	if _n_group_completed >= N_GROUP:
+	if self._n_group_completed >= FruitFactory.get("n_lines"):
 		_win()
+
 
 func _win():
 	self.win.emit()

@@ -3,6 +3,7 @@ extends HBoxContainer
 signal retry_pressed
 signal audio_pressed
 
+
 func _on_audio_button_pressed() -> void:
 	$AudioButton.visible = not $AudioButton.visible
 	$NextAudioButton.visible = not $NextAudioButton.visible
@@ -13,15 +14,14 @@ func _on_audio_button_pressed() -> void:
 
 	var name1 = audio_btn.name
 	var name2 = next_audio_btn.name
-	
+
 	# nodes must not have the same name, so i need to rename it before swap
 	audio_btn.set_name("tmp name")
 	next_audio_btn.set_name(name2)
 	audio_btn.set_name(name1)
-	
+
 	self.audio_pressed.emit()
 
 
 func _on_retry_button_pressed() -> void:
 	self.retry_pressed.emit()
-	

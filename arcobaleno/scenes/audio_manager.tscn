@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://hx0d8j4fhyus"]
 
-[ext_resource type="AudioStream" uid="uid://cssg2xu0mux8t" path="res://art/sounds/main.mp3" id="1_aoitu"]
-[ext_resource type="Script" uid="uid://dj1fu0aahhxuv" path="res://scripts/globals/audio_manager.gd" id="1_njtn3"]
-[ext_resource type="AudioStream" uid="uid://dvafkt3leokg2" path="res://art/sounds/win.mp3" id="2_njtn3"]
-[ext_resource type="AudioStream" uid="uid://tx432umip8fl" path="res://art/sounds/lose.mp3" id="3_kq7b2"]
-[ext_resource type="AudioStream" uid="uid://bgolgqo0shg0u" path="res://art/sounds/correct.mp3" id="4_02gw7"]
-[ext_resource type="AudioStream" uid="uid://n3tbocehn7uc" path="res://art/sounds/wrong.mp3" id="5_ujhup"]
+[ext_resource type="AudioStream" uid="uid://cw3q7tc2v3770" path="res://art/sounds/main.mp3" id="1_aoitu"]
+[ext_resource type="Script" uid="uid://cklvdgectki55" path="res://scripts/globals/audio_manager.gd" id="1_njtn3"]
+[ext_resource type="AudioStream" uid="uid://dw7wm7mohhxe" path="res://art/sounds/win.mp3" id="2_njtn3"]
+[ext_resource type="AudioStream" uid="uid://uxmwf538k6ek" path="res://art/sounds/lose.mp3" id="3_kq7b2"]
+[ext_resource type="AudioStream" uid="uid://cwlqudruiqpb6" path="res://art/sounds/correct.mp3" id="4_02gw7"]
+[ext_resource type="AudioStream" uid="uid://bwvty4tl712bi" path="res://art/sounds/wrong.mp3" id="5_ujhup"]
 
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_njtn3")
