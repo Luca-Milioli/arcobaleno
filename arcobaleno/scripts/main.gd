@@ -20,7 +20,7 @@ func _on_menu_play_pressed() -> void:  # no more start menu -> unused
 	remove_child(start_menu)
 	start_menu.queue_free()
 	
-	var gui = preload("res://scenes/main_gui/gui.tscn")
+	var gui = preload("res://scenes/main_gui/gui.tscn").instantiate()
 	add_child(gui)
 	_on_gui_entered()
 
