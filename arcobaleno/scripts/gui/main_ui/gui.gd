@@ -86,11 +86,23 @@ func _on_group_completed(group: GameLogic.GROUPS) -> void:
 
 
 func _on_tree_entered() -> void:
+	await $FruitContainer.fruit_ready	# fruit could not exist
+	
+	$FruitContainer.disable_fruits(
+		$FruitContainer.get_children().filter(func(c): return c is Slot), true
+	)	# not necessary
+	
 	super.fade_in($".")
+	
+	$FruitContainer.disable_fruits(
+		$FruitContainer.get_children().filter(func(c): return c is Slot), false
+	)
 
 
 func _on_tree_entered_with_tutorial() -> void:  # not connected bc no tutorial
 	Utils.recursive_disable_buttons(self, true)
+	
+	await $FruitContainer.fruit_ready	# fruit could not exist
 	$FruitContainer.disable_fruits(
 		$FruitContainer.get_children().filter(func(c): return c is Slot), true
 	)
