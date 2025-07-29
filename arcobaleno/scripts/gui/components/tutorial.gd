@@ -10,3 +10,7 @@ func _on_go_pressed() -> void:
 
 func _on_nope_pressed() -> void:
 	cancel.emit()
+
+
+func _on_tree_entered() -> void:
+	AudioManager.popup()
