@@ -3,8 +3,6 @@ extends Node
 const URL = "https://spreafico.net"
 
 func _ready() -> void:
-	#AudioManager.start()
-	
 	if has_node("Gui"):
 		_on_gui_entered()
 	else:

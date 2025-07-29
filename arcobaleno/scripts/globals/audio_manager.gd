@@ -2,12 +2,7 @@ extends Node
 
 
 func _ready() -> void:
-	start()
-
-
-func start():
-	if not $MainOst.playing:
-		$MainOst.play()
+	$MainOst.play()
 
 
 func toggle_audio():
