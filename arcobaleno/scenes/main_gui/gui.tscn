@@ -1,15 +1,16 @@
-[gd_scene load_steps=13 format=3 uid="uid://bi1alhp0os1qy"]
+[gd_scene load_steps=14 format=3 uid="uid://bi1alhp0os1qy"]
 
-[ext_resource type="Script" uid="uid://bbsb17kuc88hq" path="res://scripts/gui/main_ui/gui.gd" id="1_8h14w"]
-[ext_resource type="Texture2D" uid="uid://171rkrah6lfm" path="res://art/graphics/backgrounds/gui_background.jpg" id="2_k8xsf"]
+[ext_resource type="Script" uid="uid://dqsoxxo231f0c" path="res://scripts/gui/main_ui/gui.gd" id="1_8h14w"]
+[ext_resource type="Texture2D" uid="uid://bqtix184278da" path="res://art/graphics/backgrounds/gui_background.jpg" id="2_k8xsf"]
 [ext_resource type="PackedScene" uid="uid://dewp41breffhx" path="res://scenes/components/rainbow.tscn" id="3_gn6ma"]
 [ext_resource type="PackedScene" uid="uid://bieiqc1mo6u2r" path="res://scenes/components/top_bar.tscn" id="6_2trg8"]
 [ext_resource type="FontFile" uid="uid://btuhlt2wotj04" path="res://art/font/SkippySharp.ttf" id="7_k8xsf"]
 [ext_resource type="PackedScene" uid="uid://6tfd4fibix5d" path="res://scenes/components/fruit_container.tscn" id="7_pstwf"]
 [ext_resource type="PackedScene" uid="uid://b58mhp2m3rr8y" path="res://scenes/popups/reset_popup.tscn" id="9_gn6ma"]
-[ext_resource type="Texture2D" uid="uid://cblmx40xwqjhx" path="res://art/graphics/buttons/arrow.png" id="10_q406m"]
+[ext_resource type="Texture2D" uid="uid://dmnbr3abhvdkx" path="res://art/graphics/buttons/arrow.png" id="10_q406m"]
 [ext_resource type="PackedScene" uid="uid://mgklm4qm7xq8" path="res://scenes/popups/tutorial.tscn" id="10_w77y4"]
-[ext_resource type="Texture2D" uid="uid://bfesd062asu6d" path="res://art/graphics/buttons/arrow_hover.png" id="11_2trg8"]
+[ext_resource type="Texture2D" uid="uid://dd563saqvnnw3" path="res://art/graphics/buttons/arrow_hover.png" id="11_2trg8"]
+[ext_resource type="Script" uid="uid://cmpn2k4xc0d13" path="res://scripts/gui/components/custom_button.gd" id="11_pstwf"]
 [ext_resource type="PackedScene" uid="uid://fqf6gbptn0x2" path="res://scenes/popups/feedback_color.tscn" id="11_q406m"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_gn6ma"]
@@ -122,6 +123,7 @@ texture_normal = ExtResource("10_q406m")
 texture_hover = ExtResource("11_2trg8")
 ignore_texture_size = true
 stretch_mode = 3
+script = ExtResource("11_pstwf")
 
 [node name="RightArrow" type="TextureButton" parent="."]
 layout_mode = 1
@@ -141,6 +143,7 @@ texture_hover = ExtResource("11_2trg8")
 ignore_texture_size = true
 stretch_mode = 3
 flip_h = true
+script = ExtResource("11_pstwf")
 
 [node name="FruitContainer" parent="." instance=ExtResource("7_pstwf")]
 layout_mode = 1
@@ -156,7 +159,9 @@ offset_bottom = 335.0
 [connection signal="cancel" from="ResetPopup" to="." method="_on_reset_popup_cancel"]
 [connection signal="game_start" from="TutorialPopup" to="." method="_on_tutorial_popup_game_start"]
 [connection signal="pressed" from="LeftArrow" to="." method="_on_left_arrow_pressed"]
+[connection signal="pressed" from="LeftArrow" to="LeftArrow" method="_on_pressed"]
 [connection signal="pressed" from="RightArrow" to="." method="_on_right_arrow_pressed"]
+[connection signal="pressed" from="RightArrow" to="RightArrow" method="_on_pressed"]
 [connection signal="enough_slot" from="FruitContainer" to="." method="_on_enough_slot"]
 [connection signal="fruit_ready" from="FruitContainer" to="." method="_on_fruit_ready"]
 

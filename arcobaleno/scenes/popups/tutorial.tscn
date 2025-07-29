@@ -89,7 +89,7 @@ layout_mode = 2
 text = "Vai!"
 label_settings = SubResource("LabelSettings_bvsrc")
 
-[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="SplitContainer/Go" to="." method="_on_go_pressed"]
 
 [editable path="SplitContainer/Go"]

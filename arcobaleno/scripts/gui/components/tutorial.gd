@@ -12,5 +12,6 @@ func _on_nope_pressed() -> void:
 	cancel.emit()
 
 
-func _on_tree_entered() -> void:
-	AudioManager.popup()
+func _on_visibility_changed() -> void:
+	if self.visible:
+		AudioManager.popup()
