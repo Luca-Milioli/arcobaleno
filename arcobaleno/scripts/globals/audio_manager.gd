@@ -4,9 +4,11 @@ extends Node
 func _ready() -> void:
 	start()
 
+
 func start():
 	if not $MainOst.playing:
 		$MainOst.play()
+
 
 func toggle_audio():
 	for i in AudioServer.get_bus_count():
