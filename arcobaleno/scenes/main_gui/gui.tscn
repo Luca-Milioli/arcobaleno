@@ -56,9 +56,6 @@ layout_mode = 1
 text = "Risolvi l’operazione con i dati che hai raccolto!"
 label_settings = SubResource("LabelSettings_gn6ma")
 
-[node name="RetryButton" parent="TopBar" index="3"]
-visible = false
-
 [node name="ResetPopup" parent="." instance=ExtResource("9_gn6ma")]
 visible = false
 top_level = true
