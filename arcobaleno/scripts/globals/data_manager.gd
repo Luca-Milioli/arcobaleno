@@ -2,7 +2,7 @@ extends Node
 
 class_name DataManager
 
-const DATA_PATH = "res://data/content.csv"
+const DATA_PATH = "res://data/content.csv.txt"
 
 var fruit_data: Array
 
@@ -17,7 +17,14 @@ static func get_fruits_per_group() -> int:
 func _read_csv(separator: String = ",", path: String = DATA_PATH) -> Array:
 	if not fruit_data.is_empty():
 		return fruit_data
-
+	
+	var dir = DirAccess.open("res://data")
+	if dir:
+		for file_name in dir.get_files():
+			print("Trovato file:", file_name)
+	else:
+		print("Cartella non trovata")
+	
 	var file := FileAccess.open(path, FileAccess.READ)
 
 	if not file:

@@ -1,4 +1,4 @@
-2
+2s
 gruppo-bianco,Mela,Pera,Cavolfiore,Finocchio,"La squadra bianca è pronta! Ti aiuta a fare il pieno di Potassio e comprende anche aglio, cipolla, sedano e porri."
 gruppo-arancio,Arancia,Albicocca,Carote,Zucca,Perfetto! La squadra giallo-arancione è uno scudo che ti protegge grazie a Beta-carotene e Vitamina C.
 gruppo-verde,Uva,Kiwi,Insalata,Zucchina,"Ok! Il colore della squadra verde dipende dalla Clorofilla, un potente antiossidante che sconfiggi i radicali liberi."

@@ -1,7 +1,10 @@
 extends Node
 
+const URL = "https://spreafico.net"
 
 func _ready() -> void:
+	AudioManager.start()
+	
 	if has_node("Gui"):
 		_on_gui_entered()
 	else:
@@ -26,7 +29,11 @@ func _on_menu_play_pressed() -> void:  # no more start menu -> unused
 
 
 func _on_site_pressed() -> void:
-	get_tree().quit()
+	if OS.get_name() == "Web":
+		var js = Engine.get_singleton("JavaScriptBridge")
+		js.call("eval", "window.location.href = '" + URL + "';")
+	else:
+		get_tree().quit()
 
 
 func _on_win() -> void:
