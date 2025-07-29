@@ -201,7 +201,7 @@ func _animate_enter_or_exit(slot: Slot, enter: bool, duration: float = 0.8) -> v
 		tween
 		. tween_property(slot, "modulate:a", end_modulate, duration)
 		. set_trans(Tween.TRANS_CUBIC)
-		. set_ease(Tween.EASE_OUT)
+		. set_ease(Tween.EASE_IN if enter else Tween.EASE_OUT)
 	)
 	await tween.finished
 
