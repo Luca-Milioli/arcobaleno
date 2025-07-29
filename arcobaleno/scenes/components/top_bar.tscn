@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bieiqc1mo6u2r"]
+[gd_scene load_steps=9 format=3 uid="uid://bieiqc1mo6u2r"]
 
 [ext_resource type="Script" uid="uid://citevm15gvaoa" path="res://scripts/gui/components/top_bar.gd" id="1_bywe0"]
 [ext_resource type="Texture2D" uid="uid://bwh8k0hse6qrg" path="res://art/graphics/buttons/audio_off_button.png" id="2_p8s5q"]
 [ext_resource type="Texture2D" uid="uid://cq4i24x5ybmdi" path="res://art/graphics/buttons/audio_off_hover.png" id="3_bywe0"]
 [ext_resource type="Texture2D" uid="uid://dxkjeiv8aqc3q" path="res://art/graphics/buttons/replay_button.png" id="4_glubf"]
 [ext_resource type="Texture2D" uid="uid://ba1mk8niksal1" path="res://art/graphics/buttons/audio_on_button.png" id="4_nts21"]
+[ext_resource type="Script" uid="uid://d2tkrg0alwjy" path="res://scripts/gui/components/custom_button.gd" id="4_p8s5q"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bywe0"]
 load_path = "res://.godot/imported/audio_on_hover.png-457db6d41365f1945f17801ddc27a711.ctex"
@@ -35,6 +36,7 @@ layout_mode = 2
 texture_normal = ExtResource("2_p8s5q")
 texture_hover = ExtResource("3_bywe0")
 ignore_texture_size = true
+script = ExtResource("4_p8s5q")
 
 [node name="NextAudioButton" type="TextureButton" parent="."]
 custom_minimum_size = Vector2(64, 64)
@@ -42,6 +44,7 @@ layout_mode = 2
 texture_normal = ExtResource("4_nts21")
 texture_hover = SubResource("CompressedTexture2D_bywe0")
 ignore_texture_size = true
+script = ExtResource("4_p8s5q")
 
 [node name="Text" type="Label" parent="."]
 custom_minimum_size = Vector2(600, 64)
@@ -57,7 +60,11 @@ layout_mode = 2
 texture_normal = ExtResource("4_glubf")
 texture_hover = SubResource("CompressedTexture2D_p8s5q")
 ignore_texture_size = true
+script = ExtResource("4_p8s5q")
 
 [connection signal="pressed" from="AudioButton" to="." method="_on_audio_button_pressed"]
+[connection signal="pressed" from="AudioButton" to="AudioButton" method="_on_pressed"]
 [connection signal="pressed" from="NextAudioButton" to="." method="_on_audio_button_pressed"]
+[connection signal="pressed" from="NextAudioButton" to="NextAudioButton" method="_on_pressed"]
 [connection signal="pressed" from="RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="RetryButton" to="RetryButton" method="_on_pressed"]

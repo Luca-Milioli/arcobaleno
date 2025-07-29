@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cixb2slrwfeax"]
+[gd_scene load_steps=6 format=3 uid="uid://cixb2slrwfeax"]
 
 [ext_resource type="StyleBox" uid="uid://b2doi7du2nq53" path="res://art/styleboxes/normal_button.tres" id="1_roy8v"]
 [ext_resource type="StyleBox" uid="uid://r7f1u1uip66p" path="res://art/styleboxes/hover_button.tres" id="2_un0yl"]
+[ext_resource type="Script" uid="uid://d2tkrg0alwjy" path="res://scripts/gui/components/custom_button.gd" id="3_2okhl"]
 [ext_resource type="FontFile" uid="uid://by2fsotvgiu72" path="res://art/font/Roc_Grotesk_Medium.ttf" id="3_un0yl"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bfr1r"]
@@ -31,6 +32,7 @@ theme_override_styles/disabled = ExtResource("1_roy8v")
 theme_override_styles/hover = ExtResource("2_un0yl")
 theme_override_styles/pressed = ExtResource("2_un0yl")
 theme_override_styles/normal = ExtResource("1_roy8v")
+script = ExtResource("3_2okhl")
 
 [node name="Text" type="Label" parent="."]
 layout_mode = 1
@@ -42,3 +44,5 @@ grow_vertical = 2
 label_settings = SubResource("LabelSettings_bfr1r")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

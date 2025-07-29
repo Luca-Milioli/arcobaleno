@@ -40,3 +40,11 @@ func correct():
 
 func wrong():
 	$WrongAnswer.play()
+
+
+func tap():
+	$Tap.play()
+
+
+func popup():
+	$Popup.play()
