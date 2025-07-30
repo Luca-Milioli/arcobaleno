@@ -16,9 +16,6 @@ font_color = Color(0.0588235, 0.47451, 0.529412, 1)
 
 [node name="ResetPopup" instance=ExtResource("1_wdb7a")]
 
-[node name="Bg" parent="." index="0"]
-texture = null
-
 [node name="Title" parent="." index="1"]
 text = "Vuoi ricominciare?"
 
