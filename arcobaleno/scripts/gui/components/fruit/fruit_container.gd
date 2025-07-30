@@ -224,7 +224,7 @@ func _on_visibility_changed() -> void:
 func _on_timer_timeout() -> void:
 	var front = _child_list.pop_front()
 	add_child(front)
-	disable_fruits([front], true)
+	disable_fruits([front], true)	# disable fruits till everyone is added (fruit_ready_emitted)
 
 	if _child_list.is_empty():
 		$Timer.queue_free()

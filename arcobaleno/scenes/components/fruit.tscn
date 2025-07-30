@@ -1,6 +1,5 @@
-[gd_scene load_steps=3 format=3 uid="uid://4wwxj7bvl11v"]
+[gd_scene load_steps=2 format=3 uid="uid://4wwxj7bvl11v"]
 
-[ext_resource type="Texture2D" uid="uid://b25rv6y58c0x6" path="res://art/graphics/fruit/albicocca.png" id="1_ou67p"]
 [ext_resource type="Script" uid="uid://cbp1c52fel0oh" path="res://scripts/gui/components/fruit/fruit.gd" id="2_ribu0"]
 
 [node name="Fruit" type="TextureRect"]
@@ -14,6 +13,5 @@ offset_bottom = 20.2
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.6, 0.6)
-texture = ExtResource("1_ou67p")
 expand_mode = 1
 script = ExtResource("2_ribu0")
