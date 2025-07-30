@@ -2,6 +2,7 @@ extends Node
 
 const URL = "https://spreafico.net"
 
+
 func _ready() -> void:
 	if has_node("Gui"):
 		_on_gui_entered()
@@ -20,7 +21,7 @@ func _on_menu_play_pressed() -> void:  # no more start menu -> unused
 	await start_menu.kill()
 	remove_child(start_menu)
 	start_menu.queue_free()
-	
+
 	var gui = preload("res://scenes/main_gui/gui.tscn")
 	add_child(gui)
 	_on_gui_entered()

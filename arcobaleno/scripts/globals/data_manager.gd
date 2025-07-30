@@ -17,7 +17,7 @@ static func get_fruits_per_group() -> int:
 func _read_csv(separator: String = ",", path: String = DATA_PATH) -> Array:
 	if not fruit_data.is_empty():
 		return fruit_data
-	
+
 	var file := FileAccess.open(path, FileAccess.READ)
 
 	if not file:
@@ -43,7 +43,7 @@ func _read_csv(separator: String = ",", path: String = DATA_PATH) -> Array:
 			if val.begins_with('"') and val.ends_with('"'):
 				val = val.substr(1, val.length() - 2).replace('""', '"')
 			values.append(val)
-		
+
 		fruit_data.append(values)
 
 	file.close()
