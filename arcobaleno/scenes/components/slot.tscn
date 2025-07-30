@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://co3ac4jkb3bir"]
 
 [ext_resource type="Texture2D" uid="uid://ckujhroqe52oj" path="res://art/graphics/slot.png" id="1_ic0fu"]
-[ext_resource type="Script" uid="uid://3m62estxwbhp" path="res://scripts/gui/components/fruit/slot.gd" id="2_xilt1"]
+[ext_resource type="Script" uid="uid://bdljgac4riwox" path="res://scripts/gui/components/fruit/slot.gd" id="2_xilt1"]
 
 [node name="Slot" type="TextureRect"]
 custom_minimum_size = Vector2(101, 101)
@@ -17,3 +17,5 @@ grow_vertical = 2
 texture = ExtResource("1_ic0fu")
 expand_mode = 1
 script = ExtResource("2_xilt1")
+
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]

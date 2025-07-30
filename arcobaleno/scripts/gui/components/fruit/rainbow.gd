@@ -63,3 +63,10 @@ func resize_fruits(fruit_size: Vector2) -> void:
 	for c in get_children():
 		if c is Fruit:
 			c.size = fruit_size
+
+
+func _on_visibility_changed() -> void:
+	if self.visible:
+		self.modulate.a = 0
+		var tween = create_tween()
+		tween.tween_property(self, "modulate:a", 1.0, 0.5)
