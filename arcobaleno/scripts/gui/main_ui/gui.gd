@@ -77,6 +77,7 @@ func _on_group_completed(group: GameLogic.GROUPS) -> void:
 	await $FeedbackColor.game_start
 
 	await super.fade_out($FeedbackColor)
+	$FeedbackColor.visible = false
 	Utils.recursive_disable_buttons(self, false)
 	$FruitContainer.disable_fruits(
 		$FruitContainer.get_children().filter(func(c): return c is Slot), false
