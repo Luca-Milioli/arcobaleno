@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c8aufewfqg053" path="res://scripts/gui/components/fruit/fruit_container.gd" id="1_1wuwf"]
 
-[node name="FruitFactory" type="HBoxContainer"]
+[node name="FruitContainer" type="HBoxContainer"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -16,3 +16,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
 script = ExtResource("1_1wuwf")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.15
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

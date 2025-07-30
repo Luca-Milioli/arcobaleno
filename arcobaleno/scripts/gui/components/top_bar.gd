@@ -25,3 +25,10 @@ func _on_audio_button_pressed() -> void:
 
 func _on_retry_button_pressed() -> void:
 	self.retry_pressed.emit()
+
+
+func text_first_entrance() -> void:
+	$Text.modulate.a = 0.0
+	$Text.visible = true
+	var tween = create_tween()
+	tween.tween_property($Text, "modulate:a", 1.0, 0.5)

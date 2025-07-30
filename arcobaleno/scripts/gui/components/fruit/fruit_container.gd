@@ -6,6 +6,8 @@ signal enough_slot
 signal fruit_ready
 signal tween_finished
 
+var _child_list: Array
+
 
 func _ready() -> void:
 	_create_slot()
@@ -18,15 +20,14 @@ func _create_slot() -> void:
 		var slot = preload("res://scenes/components/slot.tscn").instantiate()
 		if i >= TOTAL_SLOT:
 			slot.visible = false
-		add_child(slot)
+		_child_list.append(slot)
 
 
 func _start_fruits(fruits: Array[Fruit]) -> void:
 	for i in range(FruitFactory.get_total_fruits()):
-		var slot = get_child(i)
+		var slot = _child_list[i]
 		if slot is Slot:
 			slot.add_child(fruits.pop_front())
-	self.fruit_ready.emit()
 
 
 func _swap_visibility(enter: Slot, exit: Slot) -> void:
@@ -212,3 +213,17 @@ func disable_fruits(slots: Array, disable: bool) -> void:
 			if fruit is Fruit:
 				fruit.disable_drag(disable)
 				break
+
+
+func _on_visibility_changed() -> void:
+	if self.visible:
+		if $Timer:
+			$Timer.start()
+
+
+func _on_timer_timeout() -> void:
+	add_child(_child_list.pop_front())
+
+	if _child_list.is_empty():
+		$Timer.queue_free()
+		self.fruit_ready.emit()

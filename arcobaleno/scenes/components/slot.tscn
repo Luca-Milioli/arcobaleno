@@ -17,3 +17,5 @@ grow_vertical = 2
 texture = ExtResource("1_ic0fu")
 expand_mode = 1
 script = ExtResource("2_xilt1")
+
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
