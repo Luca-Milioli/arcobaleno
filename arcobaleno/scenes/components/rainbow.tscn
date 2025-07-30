@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dewp41breffhx"]
 
-[ext_resource type="Script" uid="uid://652tnsdpobw0" path="res://scripts/gui/components/fruit/rainbow.gd" id="1_bpphj"]
-[ext_resource type="Texture2D" uid="uid://b35gwms784hw0" path="res://art/graphics/rainbow.png" id="2_bpphj"]
+[ext_resource type="Script" uid="uid://orpvpnt3sva0" path="res://scripts/gui/components/fruit/rainbow.gd" id="1_bpphj"]
+[ext_resource type="Texture2D" uid="uid://bi12avdsc18nv" path="res://art/graphics/rainbow.png" id="2_bpphj"]
 
 [node name="Rainbow" type="Control"]
 layout_mode = 3
@@ -53,6 +53,7 @@ visible = false
 polygon = PackedVector2Array(320, 783, 380, 783, 377, 724, 382, 671, 393, 630, 411, 592, 437, 560, 462, 540, 479, 532, 500, 530, 525, 528, 543, 533, 562, 541, 580, 556, 597, 576, 616, 605, 629, 640, 637, 667, 641, 695, 642, 733, 641, 783, 703, 783, 702, 723, 697, 669, 686, 620, 674, 588, 657, 553, 637, 521, 611, 489, 581, 464, 547, 449, 512, 444, 480, 446, 448, 458, 411, 486, 383, 522, 358, 565, 339, 613, 328, 652, 320, 713)
 
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="input_event" from="WhiteArea" to="." method="_on_white_area_input_event"]
 [connection signal="input_event" from="OrangeArea" to="." method="_on_orange_area_input_event"]
 [connection signal="input_event" from="GreenArea" to="." method="_on_green_area_input_event"]

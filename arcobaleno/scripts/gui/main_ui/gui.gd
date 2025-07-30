@@ -88,8 +88,9 @@ func _on_group_completed(group: GameLogic.GROUPS) -> void:
 
 func _on_tree_entered() -> void:
 	super.fade_in($".")
-	
+
 	appear_objects()
+
 
 func _on_tree_entered_with_tutorial() -> void:  # not connected bc no tutorial
 	Utils.recursive_disable_buttons(self, true)
@@ -105,9 +106,9 @@ func _on_tree_entered_with_tutorial() -> void:  # not connected bc no tutorial
 func _on_tutorial_popup_game_start() -> void:
 	Utils.recursive_disable_buttons($TutorialPopup, true)
 	await super.fade_out($TutorialPopup)
-	
+
 	appear_objects()
-	
+
 	$TutorialPopup.queue_free()
 
 	Utils.recursive_disable_buttons(self, false)

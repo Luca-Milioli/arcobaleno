@@ -8,6 +8,7 @@ signal tween_finished
 
 var _child_list: Array
 
+
 func _ready() -> void:
 	_create_slot()
 
@@ -222,7 +223,7 @@ func _on_visibility_changed() -> void:
 
 func _on_timer_timeout() -> void:
 	add_child(_child_list.pop_front())
-	
+
 	if _child_list.is_empty():
 		$Timer.queue_free()
 		self.fruit_ready.emit()
