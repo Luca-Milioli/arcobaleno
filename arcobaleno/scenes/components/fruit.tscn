@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://4wwxj7bvl11v"]
 
-[ext_resource type="Script" uid="uid://cbp1c52fel0oh" path="res://scripts/gui/components/fruit/fruit.gd" id="2_ribu0"]
+[ext_resource type="Script" uid="uid://cs4pohwqpqopm" path="res://scripts/gui/components/fruit/fruit.gd" id="2_ribu0"]
 
 [node name="Fruit" type="TextureRect"]
 anchors_preset = 15

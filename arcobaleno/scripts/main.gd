@@ -46,3 +46,8 @@ func _on_replay() -> void:
 	GameLogic.reset_and_restart()
 	FruitFactory.reset_and_restart()
 	get_tree().reload_current_scene()
+
+
+func _on_child_entered_tree(node: Node) -> void:
+	if has_node("FullScreenButton"):
+		move_child.call_deferred($FullScreenButton, -1)
