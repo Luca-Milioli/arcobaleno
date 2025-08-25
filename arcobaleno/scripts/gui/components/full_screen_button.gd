@@ -1,13 +1,18 @@
+## Manages FullScreen or WindowMode
 extends TextureButton
 
+class_name FullScreenButton
 
-func _toggle_fullscreen() -> void:  # return ture if it sets fullscreen
+
+## Set fullscreen if it's windowed and possible. If it's fullscreen it sets windowed.
+func _toggle_fullscreen() -> void:
 	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 
 
+## Called when button is pressed. Toggles window mode.
 func _on_pressed() -> void:
 	_toggle_fullscreen()
 	await get_tree().process_frame

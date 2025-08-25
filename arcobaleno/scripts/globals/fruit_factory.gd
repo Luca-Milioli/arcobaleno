@@ -1,17 +1,25 @@
+## Singleton that reates fruits.
 extends DataManager
 
+class_name FruitFactoryScript
+
+## Number of groups.
 var n_lines: int
+## Number of fruits for each group + 2 (group_name and group_feedback).
 var n_columns: int
 
 
+## Calls _start().
 func _ready() -> void:
 	_start()
 
 
+## Calls _start() when a match is finished and it's restarted.
 func reset_and_restart() -> void:
 	_start()
 
 
+## Reads and stores data.
 func _start():
 	super._read_csv()
 	self.n_lines = self.fruit_data.size()
@@ -28,19 +36,23 @@ func _start():
 			push_error("Incompatible number of columns in row " + str(i + 1))
 
 
+## Getter for data.
 func get_data() -> Array:
 	return super._read_csv()
 
 
+## Returns total number of fruits.
 func get_total_fruits() -> int:
 	return self.n_lines * GameLogic.get("_max_score")
 
 
+## Returns a dictionary containing names and groups of every fruits picked randomly.
 func _pick_fruits() -> Dictionary[String, GameLogic.GROUPS]:
 	var cols = _pick_columns(self.n_columns - 2)  # don't calculate first and last column
-	return _get_fruits_from_cols(self.fruit_data, cols)
+	return _get_fruits_from_cols(cols)
 
 
+## Returns indexes of columns picked randomly.
 func _pick_columns(n_col: int) -> Array[int]:
 	var cols_picked: Array[int]
 	var cols_pickable = range(n_col)
@@ -51,15 +63,17 @@ func _pick_columns(n_col: int) -> Array[int]:
 	return cols_picked
 
 
-func _get_fruits_from_cols(data: Array, cols: Array[int]) -> Dictionary[String, GameLogic.GROUPS]:
+## ## Returns a dictionary containing names and groups of every fruits in cols.
+func _get_fruits_from_cols(cols: Array[int]) -> Dictionary[String, GameLogic.GROUPS]:
 	var fruits: Dictionary[String, GameLogic.GROUPS]
 	for i in range(self.n_lines):
 		for j in cols:
-			fruits[data[i][j]] = i as GameLogic.GROUPS
+			fruits[self.fruit_data[i][j]] = i as GameLogic.GROUPS
 
 	return fruits
 
 
+## Creates and returns every Fruit.
 func create_fruits() -> Array[Fruit]:
 	var fruit_scenes: Array[Fruit]
 
@@ -76,5 +90,6 @@ func create_fruits() -> Array[Fruit]:
 	return fruit_scenes
 
 
+## Returns the feedback of the group.
 func get_feedback(group: GameLogic.GROUPS) -> String:
 	return get_data()[group][n_columns - 1]

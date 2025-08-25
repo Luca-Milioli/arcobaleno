@@ -1,6 +1,10 @@
+## Contains every ColorArea2D.
 extends Control
 
+class_name Rainbow
 
+
+## Calls GameLogic when a Fruit is released in an Area2D.
 func _area_manager(event: InputEvent, area: Area2D):
 	if event is InputEventMouseButton:
 		if not event.pressed:
@@ -10,6 +14,7 @@ func _area_manager(event: InputEvent, area: Area2D):
 					GameLogic.fruit_released(fruit, area)
 
 
+## Returns every fruit inside an Area2D.
 func _get_fruits_inside_area2d(area: Area2D, from_node: Node = null) -> Array[Fruit]:
 	var polygon = area.get_node("CollisionPolygon2D").polygon
 	var area_xform := area.get_global_transform()
@@ -39,32 +44,39 @@ func _get_fruits_inside_area2d(area: Area2D, from_node: Node = null) -> Array[Fr
 	return found_fruits
 
 
+## Called when there's an event inside red area.
 func _on_red_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	_area_manager(event, $RedArea)
 
 
+## Called when there's an event inside blue area.
 func _on_blue_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	_area_manager(event, $BlueArea)
 
 
+## Called when there's an event inside green area.
 func _on_green_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	_area_manager(event, $GreenArea)
 
 
+## Called when there's an event inside orange area.
 func _on_orange_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	_area_manager(event, $OrangeArea)
 
 
+## Called when there's an event inside white area.
 func _on_white_area_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	_area_manager(event, $WhiteArea)
 
 
+## Scales size of every Fruit in the Rainbow.
 func resize_fruits(fruit_size: Vector2) -> void:
 	for c in get_children():
 		if c is Fruit:
 			c.size = fruit_size
 
 
+## Animates the enter in the scene.
 func _on_visibility_changed() -> void:
 	if self.visible:
 		self.modulate.a = 0

@@ -1,20 +1,30 @@
+## FruitContainer. It contains Slots.
 extends HBoxContainer
 
+class_name FruitContainer
+
+## Maximum slot visible.
 const TOTAL_SLOT: int = 6
 
+## Emitted when slots are enough. (No Fruit exceeding).
 signal enough_slot
+## Emitted when every Fruit appears.
 signal fruit_ready
+## Emitted when an animation is finished.
 signal tween_finished
 
+## Contains Slot waiting timer to be added as child.
 var _child_list: Array
 
 
+## Creates slots and Fruits.
 func _ready() -> void:
 	_create_slot()
 
 	_start_fruits(FruitFactory.create_fruits())
 
 
+## Create Slot and stores them in _child_list.
 func _create_slot() -> void:
 	for i in range(FruitFactory.get_total_fruits()):
 		var slot = preload("res://scenes/components/slot.tscn").instantiate()
@@ -23,6 +33,7 @@ func _create_slot() -> void:
 		_child_list.append(slot)
 
 
+## Put every Fruit in a Slot.
 func _start_fruits(fruits: Array[Fruit]) -> void:
 	for i in range(FruitFactory.get_total_fruits()):
 		var slot = _child_list[i]
@@ -30,6 +41,7 @@ func _start_fruits(fruits: Array[Fruit]) -> void:
 			slot.add_child(fruits.pop_front())
 
 
+## Make enter visible and exit not through an animation.
 func _swap_visibility(enter: Slot, exit: Slot) -> void:
 	enter.visible = true
 	_animate_enter_or_exit(enter, true)
@@ -37,6 +49,7 @@ func _swap_visibility(enter: Slot, exit: Slot) -> void:
 	exit.visible = false
 
 
+## Called when Slot have to shift to the right. Animated
 func shift_right() -> void:
 	var child_count = get_child_count()
 	if child_count <= TOTAL_SLOT:
@@ -57,6 +70,7 @@ func shift_right() -> void:
 	_animate_children(original_positions, true)
 
 
+## Called when Slot have to shift to the left. Animated
 func shift_left() -> void:
 	if get_child_count() <= TOTAL_SLOT:
 		return
@@ -76,6 +90,7 @@ func shift_left() -> void:
 	_animate_children(original_positions, false, exiter)
 
 
+## Called when a Fruit is placed correctly. It frees its Slot and shift others to the left if necessary.
 func moved(moved_fruit: Fruit) -> void:
 	var n_child = get_child_count()
 	if n_child - 1 == TOTAL_SLOT:
@@ -111,11 +126,13 @@ func moved(moved_fruit: Fruit) -> void:
 	empty_slot.queue_free()
 
 
+## Simulate the duration of a tween with a timer.
 func _tween_finished_after_timer(duration: float) -> void:
 	await get_tree().create_timer(duration).timeout
 	self.tween_finished.emit()
 
 
+## Returns global_position of every child from from to the last visible.
 func get_children_global_positions(from: Slot = null) -> Dictionary[Slot, Vector2]:
 	var positions: Dictionary[Slot, Vector2]
 	var from_index = -1
@@ -131,6 +148,7 @@ func get_children_global_positions(from: Slot = null) -> Dictionary[Slot, Vector
 	return positions
 
 
+## Animate on shift_right and shift_left.
 func _animate_children(
 	old_position: Dictionary[Slot, Vector2], direction_right: bool, exiter: Slot = null
 ) -> void:
@@ -163,6 +181,7 @@ func _animate_children(
 		)
 
 
+## Animate when a Fruit left.
 func _animate_on_move(old_position: Dictionary[Slot, Vector2]) -> void:
 	var tween := create_tween()
 	tween.set_parallel()
@@ -187,6 +206,7 @@ func _animate_on_move(old_position: Dictionary[Slot, Vector2]) -> void:
 		)
 
 
+## Animate the enter or the exit of slot.
 func _animate_enter_or_exit(slot: Slot, enter: bool, duration: float = 0.8) -> void:  # enter = true, exit = false
 	var tween := create_tween()
 
@@ -207,6 +227,7 @@ func _animate_enter_or_exit(slot: Slot, enter: bool, duration: float = 0.8) -> v
 	await tween.finished
 
 
+## Disable or enable the drag of every Fruit contained in slots, depending by disable.
 func disable_fruits(slots: Array, disable: bool) -> void:
 	for slot in slots:
 		for fruit in slot.get_children():
@@ -215,12 +236,14 @@ func disable_fruits(slots: Array, disable: bool) -> void:
 				break
 
 
+## When it becomes visible it starts the timer that add its child.
 func _on_visibility_changed() -> void:
 	if self.visible:
 		if $Timer:
 			$Timer.start()
 
 
+## When Timer timeouts it adds a Slot as a child. When every Slot is added, it removes Timer and emit fruit_ready
 func _on_timer_timeout() -> void:
 	var front = _child_list.pop_front()
 	add_child(front)
