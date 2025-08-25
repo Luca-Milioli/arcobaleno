@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://cb2njq6eccg7x"]
+
+[ext_resource type="Texture2D" uid="uid://c16g70kiop88f" path="res://art/graphics/buttons/Fullscreen.png" id="1_rxsfy"]
+[ext_resource type="Script" uid="uid://dsttx8kkewulr" path="res://scripts/gui/components/full_screen_button.gd" id="1_uh0l1"]
+[ext_resource type="Texture2D" uid="uid://ceod68wyio2wl" path="res://art/graphics/buttons/FullscreenHover.png" id="2_a4oql"]
+
+[node name="FullScreenButton" type="TextureButton"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -497.0
+offset_top = -377.0
+offset_right = -433.0
+offset_bottom = -313.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_rxsfy")
+texture_pressed = ExtResource("2_a4oql")
+texture_hover = ExtResource("2_a4oql")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("1_uh0l1")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
