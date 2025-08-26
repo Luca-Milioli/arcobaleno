@@ -27,8 +27,11 @@ func kill_self() -> void:
 	await super.fade_out(self)
 
 
-## Connects fruits signals when they're ready.
+## Connects fruits signals when they're ready and it enables arrows.
 func _on_fruit_ready() -> void:
+	Utils.recursive_disable_buttons($LeftArrow, false)
+	Utils.recursive_disable_buttons($RightArrow, false)
+	
 	for slot in $FruitContainer.get_children():
 		if slot is Slot:
 			slot.connect("removing", _add_texture_rect)
@@ -134,8 +137,11 @@ func _on_tutorial_popup_game_start() -> void:
 func appear_objects():
 	$TopBar.text_first_entrance()
 	$Rainbow.visible = true
-	$LeftArrow.visible = true
-	$RightArrow.visible = true
+	
+	if not $FruitContainer.are_enough_slot():
+		$LeftArrow.visible = true
+		$RightArrow.visible = true
+	
 	$FruitContainer.visible = true
 
 

@@ -44,7 +44,7 @@ offset_right = 234.75
 offset_bottom = 306.0
 
 [node name="Text" parent="PlayButton" index="0"]
-text = "Rigioca"
+text = "Gioca ancora"
 label_settings = SubResource("LabelSettings_o8wmd")
 
 [node name="SiteButton" parent="." index="3" instance=ExtResource("1_c01dn")]
@@ -55,7 +55,7 @@ offset_right = -12.25
 offset_bottom = 306.0
 
 [node name="Text" parent="SiteButton" index="0"]
-text = "Torna al sito"
+text = "Cambia gioco"
 label_settings = SubResource("LabelSettings_yd2yy")
 
 [node name="ResetPopup" parent="." index="4" instance=ExtResource("8_0yb4r")]
@@ -79,7 +79,6 @@ layout_mode = 1
 
 [connection signal="pressed" from="SiteButton" to="." method="_on_site_pressed"]
 [connection signal="cancel" from="ResetPopup" to="." method="_on_reset_popup_cancel"]
-[connection signal="audio_pressed" from="TopBar" to="." method="_on_top_bar_audio_pressed"]
 [connection signal="retry_pressed" from="TopBar" to="." method="_on_top_bar_retry_pressed"]
 
 [editable path="PlayButton"]

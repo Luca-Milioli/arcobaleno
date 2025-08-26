@@ -4,7 +4,7 @@ extends HBoxContainer
 class_name FruitContainer
 
 ## Maximum slot visible.
-const TOTAL_SLOT: int = 6
+const MAX_SLOT_VISIBLE: int = 6
 
 ## Emitted when slots are enough. (No Fruit exceeding).
 signal enough_slot
@@ -28,7 +28,7 @@ func _ready() -> void:
 func _create_slot() -> void:
 	for i in range(FruitFactory.get_total_fruits()):
 		var slot = preload("res://scenes/components/slot.tscn").instantiate()
-		if i >= TOTAL_SLOT:
+		if i >= MAX_SLOT_VISIBLE:
 			slot.visible = false
 		_child_list.append(slot)
 
@@ -39,6 +39,11 @@ func _start_fruits(fruits: Array[Fruit]) -> void:
 		var slot = _child_list[i]
 		if slot is Slot:
 			slot.add_child(fruits.pop_front())
+
+
+## Returns true if every slot cam be visible. It can be called only before this object becomes visible.
+func are_enough_slot() -> bool:
+	return MAX_SLOT_VISIBLE >= self._child_list.size()
 
 
 ## Make enter visible and exit not through an animation.
@@ -52,10 +57,10 @@ func _swap_visibility(enter: Slot, exit: Slot) -> void:
 ## Called when Slot have to shift to the right. Animated
 func shift_right() -> void:
 	var child_count = get_child_count()
-	if child_count <= TOTAL_SLOT:
+	if child_count <= MAX_SLOT_VISIBLE:
 		return
 
-	var exiter = get_child(TOTAL_SLOT - 1) as Slot
+	var exiter = get_child(MAX_SLOT_VISIBLE - 1) as Slot
 	var enterer = get_child(child_count - 1) as Slot
 
 	var original_positions = get_children_global_positions()
@@ -72,14 +77,14 @@ func shift_right() -> void:
 
 ## Called when Slot have to shift to the left. Animated
 func shift_left() -> void:
-	if get_child_count() <= TOTAL_SLOT:
+	if get_child_count() <= MAX_SLOT_VISIBLE:
 		return
 
 	var exiter = get_child(0) as Slot
-	var enterer = get_child(TOTAL_SLOT) as Slot
+	var enterer = get_child(MAX_SLOT_VISIBLE) as Slot
 
 	var original_positions = get_children_global_positions()
-	var last = get_child(TOTAL_SLOT - 1) as Slot
+	var last = get_child(MAX_SLOT_VISIBLE - 1) as Slot
 	original_positions[enterer] = (
 		original_positions[last] + Vector2(get_theme_constant("separation") + last.size.x, 0)
 	)
@@ -93,16 +98,16 @@ func shift_left() -> void:
 ## Called when a Fruit is placed correctly. It frees its Slot and shift others to the left if necessary.
 func moved(moved_fruit: Fruit) -> void:
 	var n_child = get_child_count()
-	if n_child - 1 == TOTAL_SLOT:
+	if n_child - 1 == MAX_SLOT_VISIBLE:
 		self.enough_slot.emit()
 
 	var empty_slot: Slot = moved_fruit.get("_slot_parent")
-	var new_visible: Slot = get_child(TOTAL_SLOT) if n_child > TOTAL_SLOT else null
+	var new_visible: Slot = get_child(MAX_SLOT_VISIBLE) if n_child > MAX_SLOT_VISIBLE else null
 
 	var original_positions = get_children_global_positions(empty_slot)
 
 	if new_visible:
-		var last = get_child(TOTAL_SLOT - 1) as Slot
+		var last = get_child(MAX_SLOT_VISIBLE - 1) as Slot
 		original_positions[new_visible] = (
 			last.global_position + Vector2(get_theme_constant("separation") + last.size.x, 0)
 		)
@@ -139,7 +144,7 @@ func get_children_global_positions(from: Slot = null) -> Dictionary[Slot, Vector
 	if from:
 		from_index = from.get_index()
 	var children := get_children().filter(
-		func(c): return c.visible and c is Slot and c.get_index() > from_index
+		func(c): return c is Slot and c.visible and c.get_index() > from_index
 	)
 
 	for child in children:

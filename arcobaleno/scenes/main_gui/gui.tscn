@@ -56,7 +56,7 @@ layout_mode = 1
 
 [node name="Text" parent="TopBar" index="2"]
 modulate = Color(1, 1, 1, 0)
-text = "Risolvi l’operazione con i dati che hai raccolto!"
+text = "Sposta frutta e verdura nella squadra giusta e fai il pieno di benessere! Segui il colore…"
 label_settings = SubResource("LabelSettings_gn6ma")
 
 [node name="ResetPopup" parent="." instance=ExtResource("9_gn6ma")]
@@ -122,6 +122,7 @@ offset_right = -327.0
 offset_bottom = 319.0
 grow_horizontal = 2
 grow_vertical = 2
+disabled = true
 texture_normal = ExtResource("10_q406m")
 texture_hover = ExtResource("11_2trg8")
 ignore_texture_size = true
@@ -142,6 +143,7 @@ offset_right = 404.0
 offset_bottom = 319.0
 grow_horizontal = 2
 grow_vertical = 2
+disabled = true
 texture_normal = ExtResource("10_q406m")
 texture_hover = ExtResource("11_2trg8")
 ignore_texture_size = true
