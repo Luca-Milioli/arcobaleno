@@ -19,7 +19,7 @@ func _on_nope_pressed() -> void:
 	cancel.emit()
 
 
-## Plays the popup audio every time the visibility changes.
+## Plays the popup audio every time it becomes visibile.
 func _on_visibility_changed() -> void:
 	if self.visible:
 		AudioManager.popup()

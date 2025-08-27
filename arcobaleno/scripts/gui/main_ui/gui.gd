@@ -76,30 +76,25 @@ func _on_uncorrect_fruit(fruit: Fruit) -> void:
 
 ## Called when a group is completed. It makes appear its feedback.
 func _on_group_completed(group: GameLogic.GROUPS) -> void:
-	Utils.recursive_disable_buttons(self, true)
-	$FruitContainer.disable_fruits(
-		$FruitContainer.get_children().filter(func(c): return c is Slot), true
-	)
-
-	await $FruitContainer.tween_finished
-
-	$FeedbackColor/Advice.set_text(FruitFactory.get_feedback(group))
-	$FruitContainer.disable_fruits($FruitContainer.get_children(), true)  # before tween finished are enabled again
-
+	if $FeedbackColor.visible:
+		$FeedbackTimer.stop()
+		await _on_feedback_timer_timeout()
+	
+	$FeedbackColor.set_feedback_text(FruitFactory.get_feedback(group))
+	
 	$FeedbackColor.visible = true
-	await super.fade_in($FeedbackColor)
-	Utils.recursive_disable_buttons($FeedbackColor, false)
-
-	await $FeedbackColor.game_start
-
-	await super.fade_out($FeedbackColor)
-	$FeedbackColor.visible = false
-	Utils.recursive_disable_buttons(self, false)
-	$FruitContainer.disable_fruits(
-		$FruitContainer.get_children().filter(func(c): return c is Slot), false
-	)
-
+	
+	$FeedbackTimer.start()
+	
+	await $FeedbackTimer.timeout
+	
 	self.finished.emit()
+
+
+## Called when a Feedback has to fade out.
+func _on_feedback_timer_timeout() -> void:
+	await $FeedbackColor.fade_out()
+	$FeedbackColor.visible = false
 
 
 ## Animates enter.

@@ -51,14 +51,6 @@ offset_right = 393.01
 offset_bottom = 155.0
 mouse_filter = 1
 
-[node name="TopBar" parent="." instance=ExtResource("6_2trg8")]
-layout_mode = 1
-
-[node name="Text" parent="TopBar" index="2"]
-modulate = Color(1, 1, 1, 0)
-text = "Sposta frutta e verdura nella squadra giusta e fai il pieno di benessere! Segui il colore…"
-label_settings = SubResource("LabelSettings_gn6ma")
-
 [node name="ResetPopup" parent="." instance=ExtResource("9_gn6ma")]
 visible = false
 top_level = true
@@ -93,20 +85,10 @@ grow_vertical = 2
 
 [node name="FeedbackColor" parent="." instance=ExtResource("11_q406m")]
 visible = false
-modulate = Color(1, 1, 1, 0)
 top_level = true
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -306.0
-offset_top = -189.0
-offset_right = 306.0
-offset_bottom = 189.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_top = 23.0
+offset_bottom = 183.0
 
 [node name="LeftArrow" type="TextureButton" parent="."]
 visible = false
@@ -122,6 +104,7 @@ offset_right = -327.0
 offset_bottom = 319.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 0
 disabled = true
 texture_normal = ExtResource("10_q406m")
 texture_hover = ExtResource("11_2trg8")
@@ -143,6 +126,7 @@ offset_right = 404.0
 offset_bottom = 319.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 0
 disabled = true
 texture_normal = ExtResource("10_q406m")
 texture_hover = ExtResource("11_2trg8")
@@ -159,9 +143,19 @@ offset_top = 234.0
 offset_right = 328.0
 offset_bottom = 335.0
 
+[node name="TopBar" parent="." instance=ExtResource("6_2trg8")]
+layout_mode = 1
+
+[node name="Text" parent="TopBar" index="2"]
+modulate = Color(1, 1, 1, 0)
+text = "Sposta frutta e verdura nella squadra giusta e fai il pieno di benessere! Segui il colore…"
+label_settings = SubResource("LabelSettings_gn6ma")
+
+[node name="FeedbackTimer" type="Timer" parent="."]
+wait_time = 10.0
+
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
-[connection signal="retry_pressed" from="TopBar" to="." method="_on_top_bar_retry_pressed"]
 [connection signal="cancel" from="ResetPopup" to="." method="_on_reset_popup_cancel"]
 [connection signal="game_start" from="TutorialPopup" to="." method="_on_tutorial_popup_game_start"]
 [connection signal="pressed" from="LeftArrow" to="." method="_on_left_arrow_pressed"]
@@ -172,5 +166,7 @@ offset_bottom = 335.0
 [connection signal="visibility_changed" from="RightArrow" to="RightArrow" method="_on_visibility_changed"]
 [connection signal="enough_slot" from="FruitContainer" to="." method="_on_enough_slot"]
 [connection signal="fruit_ready" from="FruitContainer" to="." method="_on_fruit_ready"]
+[connection signal="retry_pressed" from="TopBar" to="." method="_on_top_bar_retry_pressed"]
+[connection signal="timeout" from="FeedbackTimer" to="." method="_on_feedback_timer_timeout"]
 
 [editable path="TopBar"]
