@@ -152,7 +152,7 @@ text = "Sposta frutta e verdura nella squadra giusta e fai il pieno di benessere
 label_settings = SubResource("LabelSettings_gn6ma")
 
 [node name="FeedbackTimer" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 5.0
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
