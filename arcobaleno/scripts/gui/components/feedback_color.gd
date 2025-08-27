@@ -15,7 +15,7 @@ func _on_visibility_changed() -> void:
 		AudioManager.popup()
 
 		self.modulate.a = 0
-		var final_pos_x = float(get_viewport().size.x) / 2 - self.size.x / 2
+		var final_pos_x = get_parent_area_size().x / 2 - self.size.x / 2
 		var tween = create_tween().set_parallel()
 
 		tween.tween_property(self, "modulate:a", 1.0, 1.0)
@@ -25,7 +25,7 @@ func _on_visibility_changed() -> void:
 ## It fades itself out and move from center to right. When it's finished,
 ## it brings itself back to the left side, ready for the next animation.
 func fade_out() -> void:
-	var final_pos_x = float(get_viewport().size.x) - self.size.x
+	var final_pos_x = get_parent_area_size().x - self.size.x
 	var tween = create_tween().set_parallel()
 
 	tween.tween_property(self, "modulate:a", 0.0, 1.0)
