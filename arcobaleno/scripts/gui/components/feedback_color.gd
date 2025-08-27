@@ -10,14 +10,14 @@ func set_feedback_text(feedback_text: String) -> void:
 
 ## Plays the popup audio every time it becomes visibile. Also, it fades itself in
 ## and move from left to center.
-func _on_visibility_changed() -> void:	
+func _on_visibility_changed() -> void:
 	if self.visible:
 		AudioManager.popup()
-		
+
 		self.modulate.a = 0
 		var final_pos_x = float(get_viewport().size.x) / 2 - self.size.x / 2
 		var tween = create_tween().set_parallel()
-		
+
 		tween.tween_property(self, "modulate:a", 1.0, 1.0)
 		tween.tween_property(self, "global_position:x", final_pos_x, 1.0)
 
@@ -27,10 +27,10 @@ func _on_visibility_changed() -> void:
 func fade_out() -> void:
 	var final_pos_x = float(get_viewport().size.x) - self.size.x
 	var tween = create_tween().set_parallel()
-	
+
 	tween.tween_property(self, "modulate:a", 0.0, 1.0)
 	tween.tween_property(self, "global_position:x", final_pos_x, 1.0)
-	
+
 	await tween.finished
-	
+
 	self.global_position.x = 0
