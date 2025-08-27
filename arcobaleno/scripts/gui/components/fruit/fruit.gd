@@ -1,6 +1,5 @@
 ## Manage a Fruit: drag and drop, group.
 extends TextureRect
-
 class_name Fruit
 
 ## Emit when Fruit starts dragging.

@@ -1,6 +1,5 @@
 ## Contains every ColorArea2D.
 extends Control
-
 class_name Rainbow
 
 

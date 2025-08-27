@@ -1,6 +1,5 @@
 ## Class that access and store data from csv.
 extends Node
-
 class_name DataManager
 
 ## Path of .csv where data are stored.

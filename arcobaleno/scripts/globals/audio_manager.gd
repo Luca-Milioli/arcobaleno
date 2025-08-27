@@ -1,6 +1,5 @@
 ## Signleton that manages sounds and it can mute or unmute.
 extends Node
-
 class_name AudioManagerScript
 
 

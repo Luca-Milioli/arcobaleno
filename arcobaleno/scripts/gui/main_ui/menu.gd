@@ -1,5 +1,6 @@
 ## Script that manages every game menu (start menu, win menu, lose menu, ...).
 extends CommonUI
+class_name Menu
 
 ## Emitted when the "play" button is pressed.
 signal play_pressed

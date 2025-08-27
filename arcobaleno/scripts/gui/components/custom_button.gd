@@ -1,6 +1,5 @@
 ## Class that extends the BaseButton and represents a BaseButton with tap sound on press.
 extends BaseButton
-
 class_name CustomButton
 
 

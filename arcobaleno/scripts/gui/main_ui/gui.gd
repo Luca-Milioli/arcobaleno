@@ -1,6 +1,5 @@
 ## View of the game. Manages Fruit drag, FruitContainer and others components.
 extends CommonUI
-
 class_name Gui
 
 ## Emitted when game is finished.

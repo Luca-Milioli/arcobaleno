@@ -1,7 +1,5 @@
-## Singleton that reates fruits.
+## Singleton that creates fruits.
 extends DataManager
-
-class_name FruitFactoryScript
 
 ## Number of groups.
 var n_lines: int

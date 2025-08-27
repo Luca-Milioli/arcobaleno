@@ -1,13 +1,12 @@
-## Slot that contains a Fruit
+## Slot that contains a Fruit.
 extends TextureRect
-
 class_name Slot
 
-## Emit when it's been removing from its parent
+## Emit when it's been removing from its parent.
 signal removing
 
 
-## Animate the enter in the scene-
+## Animate the enter in the scene.
 func _on_tree_entered() -> void:
 	self.modulate.a = 0
 	var tween = create_tween()

@@ -1,6 +1,5 @@
-## Manages FullScreen or WindowMode
+## Manages FullScreen or Windowed Mode.
 extends TextureButton
-
 class_name FullScreenButton
 
 

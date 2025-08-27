@@ -1,6 +1,5 @@
 ## Main. It manages transition from a scene to another (menu, gui).
 extends Node
-
 class_name Main
 
 ## URL of site that it'll be redirected to.

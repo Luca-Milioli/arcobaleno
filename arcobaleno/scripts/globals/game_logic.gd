@@ -2,8 +2,6 @@
 ## Singleton.
 extends Node
 
-class_name GameLogicScript
-
 ## Every value is a color of the rainbow.
 enum GROUPS { WHITE, ORANGE, GREEN, BLUE, RED }
 

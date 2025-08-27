@@ -1,6 +1,5 @@
 ## FruitContainer. It contains Slots.
 extends HBoxContainer
-
 class_name FruitContainer
 
 ## Maximum slot visible.

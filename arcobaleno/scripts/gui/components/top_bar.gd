@@ -1,5 +1,4 @@
-## Class that represents the topbar of display. It contains retry button, audio button
-## and text.
+## Class that represents the topbar of display. It contains retry button, audio button and text.
 extends HBoxContainer
 class_name TopBar
 

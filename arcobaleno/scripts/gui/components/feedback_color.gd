@@ -1,5 +1,5 @@
+## Class that represent the view of a feedback that appears when you complete a group.
 extends Control
-
 class_name FeedbackColor
 
 

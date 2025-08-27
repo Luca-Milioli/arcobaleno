@@ -1,6 +1,4 @@
-## Class that implements some common features that some gui component may use.
-## This root scene must have topbar and resetpopup scenes in order to make this script
-## work.
+## Class that implements some common features that some gui component may use. This root scene must have topbar and resetpopup scenes in order to make this script work.
 extends Node
 class_name CommonUI
 
