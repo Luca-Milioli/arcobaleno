@@ -6,8 +6,8 @@ class_name Rainbow
 ## Calls GameLogic when a Fruit is released in an Area2D.
 func _area_manager(event: InputEvent, area: Area2D):
 	if event is InputEventMouseButton:
-		if not event.pressed:
-			# Mouse released
+		if not event.pressed: # Mouse released
+			
 			for fruit in _get_fruits_inside_area2d(area):
 				if not fruit.is_dropped():
 					GameLogic.fruit_released(fruit, area)

@@ -6,14 +6,12 @@ class_name Main
 const URL = "https://spreafico.net"
 
 
-## Makes the background transparent
+## Makes the background transparent.
 ## Makes game start or connect menu to make it start.
 func _ready() -> void:
-	get_viewport().size = DisplayServer.window_get_size()
 	get_tree().root.transparent_bg = true
 	#RenderingServer.set_default_clear_color(Color(0, 0, 0, 0)) # already changed in project settings
-	await get_tree().process_frame
-	print(get_viewport().size)
+	
 	if $SubViewportContainer/SubViewport.has_node("Gui"):
 		_on_gui_entered()
 	else:
@@ -31,7 +29,7 @@ func _on_gui_entered() -> void:
 func _on_menu_play_pressed() -> void:  # no more start menu -> unused
 	var start_menu = $SubViewportContainer/SubViewport.get_node("StartMenu")
 	await start_menu.kill()
-	remove_child(start_menu)
+	$SubViewportContainer/SubViewport.remove_child(start_menu)
 	start_menu.queue_free()
 
 	var gui = preload("res://scenes/main_gui/gui.tscn")
@@ -56,7 +54,7 @@ func _on_win() -> void:
 
 	await $SubViewportContainer/SubViewport/Gui.kill_self()
 	$SubViewportContainer/SubViewport/Gui.queue_free()
-	add_child(end_menu)
+	$SubViewportContainer/SubViewport.add_child(end_menu)
 
 	end_menu.connect_replay(_on_replay)
 	end_menu.site_pressed.connect(_on_site_pressed)
@@ -71,5 +69,5 @@ func _on_replay() -> void:
 
 ## Called when a child is added. It moves FullScreenButton in last position.
 func _on_child_entered_tree(node: Node) -> void:
-	if has_node("FullScreenButton"):
-		move_child.call_deferred($SubViewportContainer/SubViewport/FullScreenButton, -1)
+	if $SubViewportContainer/SubViewport.has_node("FullScreenButton"):
+		$SubViewportContainer/SubViewport.move_child.call_deferred($SubViewportContainer/SubViewport/FullScreenButton, -1)
