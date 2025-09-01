@@ -9,31 +9,33 @@ const URL = "https://spreafico.net"
 ## Makes the background transparent
 ## Makes game start or connect menu to make it start.
 func _ready() -> void:
+	get_viewport().size = DisplayServer.window_get_size()
 	get_tree().root.transparent_bg = true
 	#RenderingServer.set_default_clear_color(Color(0, 0, 0, 0)) # already changed in project settings
-	
-	if has_node("Gui"):
+	await get_tree().process_frame
+	print(get_viewport().size)
+	if $SubViewportContainer/SubViewport.has_node("Gui"):
 		_on_gui_entered()
 	else:
-		$StartMenu.play_pressed.connect(_on_menu_play_pressed)
+		$SubViewportContainer/SubViewport/StartMenu.play_pressed.connect(_on_menu_play_pressed)
 
 
 ## Called when Gui entered. It connects some signals.
 func _on_gui_entered() -> void:
 	GameLogic.win.connect(_on_win)
-	GameLogic.connect_to_target($Gui)
-	$Gui/ResetPopup.game_start.connect(_on_replay)
+	GameLogic.connect_to_target($SubViewportContainer/SubViewport/Gui)
+	$SubViewportContainer/SubViewport/Gui/ResetPopup.game_start.connect(_on_replay)
 
 
 ## Called when start_menu button is pressed. It makes enter gui.
 func _on_menu_play_pressed() -> void:  # no more start menu -> unused
-	var start_menu = get_node("StartMenu")
+	var start_menu = $SubViewportContainer/SubViewport.get_node("StartMenu")
 	await start_menu.kill()
 	remove_child(start_menu)
 	start_menu.queue_free()
 
 	var gui = preload("res://scenes/main_gui/gui.tscn")
-	add_child(gui)
+	$SubViewportContainer/SubViewport.add_child(gui)
 	_on_gui_entered()
 
 
@@ -48,12 +50,12 @@ func _on_site_pressed() -> void:
 
 ## Called when game is finished.
 func _on_win() -> void:
-	await $Gui.finished
+	await $SubViewportContainer/SubViewport/Gui.finished
 
 	var end_menu = preload("res://scenes/main_gui/menu/end_menu.tscn").instantiate()
 
-	await $Gui.kill_self()
-	$Gui.queue_free()
+	await $SubViewportContainer/SubViewport/Gui.kill_self()
+	$SubViewportContainer/SubViewport/Gui.queue_free()
 	add_child(end_menu)
 
 	end_menu.connect_replay(_on_replay)
@@ -70,4 +72,4 @@ func _on_replay() -> void:
 ## Called when a child is added. It moves FullScreenButton in last position.
 func _on_child_entered_tree(node: Node) -> void:
 	if has_node("FullScreenButton"):
-		move_child.call_deferred($FullScreenButton, -1)
+		move_child.call_deferred($SubViewportContainer/SubViewport/FullScreenButton, -1)
