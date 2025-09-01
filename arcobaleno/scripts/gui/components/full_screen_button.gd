@@ -12,7 +12,7 @@ func _ready() -> void:
 	
 	if device == "mobile":
 		queue_free()
-
+		
 
 ## Set fullscreen if it's windowed and possible. If it's fullscreen it sets windowed.
 func _toggle_fullscreen() -> void:

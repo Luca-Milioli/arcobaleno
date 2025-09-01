@@ -18,6 +18,17 @@ func _ready() -> void:
 		$SubViewportContainer/SubViewport/StartMenu.play_pressed.connect(_on_menu_play_pressed)
 
 
+## Checks every frame the screen orientation and stops the game (mobile only).
+func _process(_delta):
+	var orientation = DisplayServer.screen_get_orientation()
+	if orientation == DisplayServer.SCREEN_PORTRAIT:
+		$SubViewportContainer/SubViewport/RotateWarning.visible = true
+		get_tree().paused = true
+	else:
+		$SubViewportContainer/SubViewport/RotateWarning.visible = false
+		get_tree().paused = false
+
+
 ## Called when Gui entered. It connects some signals.
 func _on_gui_entered() -> void:
 	GameLogic.win.connect(_on_win)

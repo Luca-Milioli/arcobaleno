@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7lt83cik6p6c"]
+
+[ext_resource type="LabelSettings" uid="uid://lwgurm6y0jnr" path="res://art/styleboxes/label_settings_40.tres" id="1_6vd3l"]
+[ext_resource type="Texture2D" uid="uid://xh2o7j5gim1i" path="res://art/graphics/mobile_rotate.png" id="2_plxsh"]
+
+[node name="RotateWarning" type="Control"]
+visible = false
+z_index = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.128344, 0.128344, 0.128344, 1)
+
+[node name="RotateText" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -134.0
+offset_bottom = -53.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Ruota il telefono"
+label_settings = ExtResource("1_6vd3l")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PhoneImage" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -202.0
+offset_right = 200.0
+offset_bottom = 98.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_plxsh")
