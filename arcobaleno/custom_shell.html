@@ -14,13 +14,26 @@
         }
 
         body {
-            font-family: 'Comic Sans MS', sans-serif;
+            font-family: "Skyippy Sharp";
             background: linear-gradient(135deg, #FFE066, #FF6B9D, #C44CFF, #66D9EF, #7ED321);
             background-size: 400% 400%;
             animation: rainbowBg 8s ease infinite;
             display: flex;
             justify-content: center;
             align-items: center;
+        }
+
+        @font-face {
+            font-family: "Skyippy Sharp";
+            src: url("../art/font/SkippySharp.ttf") format("truetype");
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        .fruit-icon {
+            height: 1em;             /* grandezza proporzionata al testo */
+            vertical-align: middle;  /* allinea col testo */
+            margin: 0 0.3em;         /* un po’ di spazio dal testo */
         }
 
         @keyframes rainbowBg {
@@ -34,7 +47,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: #000;
+            background: transparent !important;
             display: block;
             opacity: 0;
             transition: opacity 1s ease;
@@ -97,49 +110,16 @@
         .status.error {
             color: #ff0000;
         }
-        
-        /* Fullscreen button */
-        .fullscreen-button {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: linear-gradient(135deg, #FF6B9D, #FFE066);
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 25px;
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 20px rgba(255,107,157,0.4);
-            z-index: 1000;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-            border: 3px solid rgba(255,255,255,0.3);
-            animation: buttonGlow 3s ease-in-out infinite;
-            font-family: 'Nunito', sans-serif;
-        }
-
-        @keyframes buttonGlow {
-            0%, 100% { box-shadow: 0 8px 20px rgba(255,107,157,0.4), 0 0 0 0 rgba(255,107,157,0.7); }
-            50% { box-shadow: 0 8px 20px rgba(255,107,157,0.4), 0 0 0 4px rgba(255,107,157,0); }
-        }
-
-        .fullscreen-button:hover {
-            transform: translateY(-2px) scale(1.05);
-            box-shadow: 0 12px 30px rgba(255,107,157,0.5);
-            background: linear-gradient(135deg, #FFE066, #7ED321);
-        }
-
-        .fullscreen-button:active {
-            transform: translateY(0) scale(0.98);
-        }
     </style>
 </head>
 <body>
     <canvas id="canvas"></canvas>
     <div class="overlay" id="overlay">
-        <h1>🍓 Arcobaleno Goloso 🍌</h1>
+        <h1>
+            <img src="../art/fruit/fragola.png" class="fruit-icon">
+            Arcobaleno goloso
+            <img src="../art/fruit/albicocca.png" class="fruit-icon">
+        </h1>
         <div class="loading">
             <div class="progress" id="progress"></div>
         </div>
@@ -153,7 +133,12 @@
         const progressBar = document.getElementById('progress');
         const statusDiv = document.getElementById('status');
 
-        var engine = new Engine($GODOT_CONFIG);
+        // Config base di Godot + canvas trasparente
+        var config = Object.assign({}, $GODOT_CONFIG, {
+            canvas: { alpha: true }
+        });
+
+        var engine = new Engine(config);
 
         engine.startGame({
             onProgress: function(current, total) {

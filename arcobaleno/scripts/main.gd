@@ -6,8 +6,12 @@ class_name Main
 const URL = "https://spreafico.net"
 
 
+## Makes the background transparent
 ## Makes game start or connect menu to make it start.
 func _ready() -> void:
+	get_tree().root.transparent_bg = true
+	#RenderingServer.set_default_clear_color(Color(0, 0, 0, 0)) # already changed in project settings
+	
 	if has_node("Gui"):
 		_on_gui_entered()
 	else:
