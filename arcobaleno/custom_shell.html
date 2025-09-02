@@ -32,6 +32,7 @@
             src: url("../art/font/SkippySharp.ttf") format("truetype");
             font-weight: normal;
             font-style: normal;
+            font-size: clamp(14px, 2.5vw, 24px);
         }
 
         .fruit-icon {
@@ -55,6 +56,7 @@
             display: block;
             opacity: 0;
             transition: opacity 1s ease;
+            outline: none !important; /* se non è messo a none, viene visualizzato un bordo quando si clicca sul canvas */
         }
 
         #canvas.ready {
@@ -146,10 +148,6 @@
         var engine = new Engine(config);
 
         engine.startGame({
-            onExecute: (args) => {
-                args.push("--device=" + getDeviceType());
-                return args;
-            },
             onProgress: function(current, total) {
                 if (total > 0) {
                     const percent = (current / total) * 100;
@@ -164,18 +162,6 @@
             statusDiv.textContent = "Errore: " + err;
             statusDiv.classList.add('error');
         });
-
-        function getDeviceType() {
-            const ua = navigator.userAgent;
-
-            if (/Mobi|Android/i.test(ua)) {
-                return "mobile";
-            }
-            if (/Tablet|iPad/i.test(ua)) {
-                return "tablet";
-            }
-            return "desktop";
-        }
         
         function toggleFullscreen() {
             if (!document.fullscreenElement) {

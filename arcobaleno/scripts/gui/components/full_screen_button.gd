@@ -5,14 +5,9 @@ class_name FullScreenButton
 
 ## If user is using a mobile device, this button will be removed.
 func _ready() -> void:
-	var device = ""
-	for arg in OS.get_cmdline_args():
-		if arg.begins_with("--device="):
-			device = arg.split("=")[1]
-	
-	if device == "mobile":
+	if OS.has_feature("mobile"):
 		queue_free()
-		
+
 
 ## Set fullscreen if it's windowed and possible. If it's fullscreen it sets windowed.
 func _toggle_fullscreen() -> void:
@@ -40,4 +35,6 @@ func _on_pressed() -> void:
 
 ## When button is released, it forces Normal Texture (to fix a bug from tablet and mobile). 
 func _on_button_up() -> void:
+	self.toggle_mode = true
 	set_pressed_no_signal(false)
+	self.toggle_mode = false
