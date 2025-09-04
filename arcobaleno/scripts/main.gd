@@ -11,25 +11,30 @@ var mobile: bool
 ## Set mobile attribute and connects some signal of get_window and calculate the top window.
 ## Makes game start or connect menu to make it start.
 func _ready() -> void:
-	self.mobile = OS.has_feature("mobile") or OS.has_feature("web_ios") or OS.has_feature("web_android")
-	
+	self.mobile = (
+		OS.has_feature("mobile") or OS.has_feature("web_ios") or OS.has_feature("web_android")
+	)
+
 	if OS.get_name() == "Web":
-		self.window = JavaScriptBridge.get_interface("window") # (problema -> ritorna iframe)
+		self.window = JavaScriptBridge.get_interface("window")  # (problema -> ritorna iframe)
 		get_window().focus_entered.connect(_on_window_focus_entered)
 		get_window().focus_exited.connect(_on_window_focus_exited)
-	
+
 	if $SubViewportContainer/SubViewport.has_node("Gui"):
 		_on_gui_entered()
 	else:
 		$SubViewportContainer/SubViewport/StartMenu.play_pressed.connect(_on_menu_play_pressed)
 
+
 ## When window is not in background anymore, it resumes the audio.
 func _on_window_focus_entered() -> void:
 	AudioManager.set_paused(false)
 
+
 ## When window goes in background, it pauses the audio.
 func _on_window_focus_exited() -> void:
 	AudioManager.set_paused(true)
+
 
 ## Resize viewport as viewportcontainer.
 ## Checks every frame the screen orientation and stops the game (mobile only).
@@ -38,7 +43,7 @@ func _on_window_focus_exited() -> void:
 ## Its direct child must be set Process = Pausable.
 func _process(_delta):
 	$SubViewportContainer/SubViewport.size = $SubViewportContainer.size
-	
+
 	# non funziona quando è dentro l'iframe. window non è l'oggetto giusto.
 	if self.mobile:
 		if window.matchMedia("(orientation: portrait)").matches:
@@ -47,6 +52,7 @@ func _process(_delta):
 		else:
 			$SubViewportContainer/SubViewport/RotateWarning.visible = false
 			set_paused(false)
+
 
 ## Put the game and the audio in pause.
 func set_paused(paused: bool) -> void:
@@ -79,7 +85,9 @@ func _on_menu_play_pressed() -> void:  # no more start menu -> unused
 ## if the game is a webexport. Quits the application otherwise.
 func _on_site_pressed() -> void:
 	if OS.get_name() == "Web":
-		var URL = JavaScriptBridge.call("eval", "window.location.href.split('/').slice(0, -2).join('/');")
+		var URL = JavaScriptBridge.call(
+			"eval", "top.location.href.split('/').slice(0, -2).join('/');"
+		)
 		JavaScriptBridge.call("eval", "top.location.href = '" + URL + "';")
 	else:
 		get_tree().quit()
@@ -109,4 +117,6 @@ func _on_replay() -> void:
 ## Called when a child is added. It moves FullScreenButton in last position.
 func _on_child_entered_tree(node: Node) -> void:
 	if $SubViewportContainer/SubViewport.has_node("FullScreenButton"):
-		$SubViewportContainer/SubViewport.move_child.call_deferred($SubViewportContainer/SubViewport/FullScreenButton, -1)
+		$SubViewportContainer/SubViewport.move_child.call_deferred(
+			$SubViewportContainer/SubViewport/FullScreenButton, -1
+		)

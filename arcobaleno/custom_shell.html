@@ -131,7 +131,7 @@
         // Config base di Godot + canvas trasparente
         var config = Object.assign({}, $GODOT_CONFIG, {
             canvas: { alpha: true },
-            pauseOnBlur: false // don't pause when you click outside the canvas
+            pauseOnBlur: false // don't pause when you click outside the canvas (non sembra funzionare)
         });
 
         var engine = new Engine(config);
