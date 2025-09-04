@@ -15,16 +15,10 @@
 
         body {
             font-family: "Skyippy Sharp";
-            background: linear-gradient(135deg, #FFE066, #FF6B9D, #C44CFF, #66D9EF, #7ED321);
-            background-size: 400% 400%;
-            animation: rainbowBg 8s ease infinite;
+            background: transparent;
             display: flex;
             justify-content: center;
             align-items: center;
-        }
-
-        body.ready {
-            background: transparent;
         }
 
         @font-face {
@@ -32,18 +26,12 @@
             src: url("../art/font/SkippySharp.ttf") format("truetype");
             font-weight: normal;
             font-style: normal;
-            font-size: clamp(14px, 2.5vw, 24px);
         }
 
         .fruit-icon {
             height: 1em;             /* grandezza proporzionata al testo */
             vertical-align: middle;  /* allinea col testo */
             margin: 0 0.3em;         /* un po’ di spazio dal testo */
-        }
-
-        @keyframes rainbowBg {
-            0%,100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
         }
 
         #canvas {
@@ -76,18 +64,18 @@
             z-index: 10;
             color: #fff;
             text-align: center;
-            background: rgba(0, 0, 0, 0.3);
         }
 
         .overlay h1 {
-            font-size: 2.5rem;
+            font-size: clamp(25px, 4vw, 100px);
             margin-bottom: 20px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            color: black;
         }
 
         .loading {
-            width: 300px;
-            height: 20px;
+            width: clamp(280px, 40vw, 1000px);
+            height: 3vh;
             background: rgba(255,255,255,0.4);
             border-radius: 10px;
             overflow: hidden;
@@ -97,7 +85,7 @@
         .progress {
             height: 100%;
             width: 0%;
-            background: linear-gradient(90deg, #FF6B9D, #FFE066, #7ED321);
+            background: linear-gradient(90deg, #FF6B9D, #FFE066, #21d344);
             background-size: 300% 100%;
             animation: progressAnim 2s linear infinite;
             transition: width 0.3s ease;
@@ -142,7 +130,8 @@
 
         // Config base di Godot + canvas trasparente
         var config = Object.assign({}, $GODOT_CONFIG, {
-            canvas: { alpha: true }
+            canvas: { alpha: true },
+            pauseOnBlur: false // don't pause when you click outside the canvas
         });
 
         var engine = new Engine(config);

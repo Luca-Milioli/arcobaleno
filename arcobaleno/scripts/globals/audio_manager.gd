@@ -7,6 +7,10 @@ class_name AudioManagerScript
 func _ready() -> void:
 	$MainOst.play()
 
+## Pause the audio if paused is true. Resumes it otherwise.
+func set_paused(paused: bool) -> void:
+	AudioManager.get_tree().paused = paused
+
 
 ## Switches audio from off to on or from on to off.
 func toggle_audio():

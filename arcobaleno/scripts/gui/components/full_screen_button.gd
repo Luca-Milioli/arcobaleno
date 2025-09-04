@@ -3,9 +3,9 @@ extends TextureButton
 class_name FullScreenButton
 
 
-## If user is using a mobile device, this button will be removed.
+## If this game is running on a Web browser on mobile, this button will be removed.
 func _ready() -> void:
-	if OS.has_feature("mobile"):
+	if OS.has_feature("web_ios") or OS.has_feature("web_android"):
 		queue_free()
 
 
@@ -31,10 +31,3 @@ func _on_pressed() -> void:
 		set("texture_normal", preload("res://art/graphics/buttons/Fullscreen.png"))
 		set("texture_hover", hover)
 		set("texture_pressed", hover)
-
-
-## When button is released, it forces Normal Texture (to fix a bug from tablet and mobile). 
-func _on_button_up() -> void:
-	self.toggle_mode = true
-	set_pressed_no_signal(false)
-	self.toggle_mode = false
