@@ -14,9 +14,8 @@ func _ready() -> void:
 	self.mobile = (
 		OS.has_feature("mobile") or OS.has_feature("web_ios") or OS.has_feature("web_android")
 	)
-
 	if OS.get_name() == "Web":
-		self.window = JavaScriptBridge.get_interface("window")  # (problema -> ritorna iframe)
+		self.window = JavaScriptBridge.get_interface("window").parent
 		get_window().focus_entered.connect(_on_window_focus_entered)
 		get_window().focus_exited.connect(_on_window_focus_exited)
 
@@ -43,8 +42,7 @@ func _on_window_focus_exited() -> void:
 ## Its direct child must be set Process = Pausable.
 func _process(_delta):
 	$SubViewportContainer/SubViewport.size = $SubViewportContainer.size
-
-	# non funziona quando è dentro l'iframe. window non è l'oggetto giusto.
+	
 	if self.mobile:
 		if window.matchMedia("(orientation: portrait)").matches:
 			$SubViewportContainer/SubViewport/RotateWarning.visible = true

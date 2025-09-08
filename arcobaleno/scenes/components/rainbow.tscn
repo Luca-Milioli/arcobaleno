@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dewp41breffhx"]
 
-[ext_resource type="Script" uid="uid://ca1dft4vcqe6b" path="res://scripts/gui/components/fruit/rainbow.gd" id="1_bpphj"]
+[ext_resource type="Script" uid="uid://c853snv7mdsg" path="res://scripts/gui/components/fruit/rainbow.gd" id="1_bpphj"]
 [ext_resource type="Texture2D" uid="uid://bi12avdsc18nv" path="res://art/graphics/rainbow.png" id="2_bpphj"]
 
 [node name="Rainbow" type="Control"]
