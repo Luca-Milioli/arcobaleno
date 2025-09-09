@@ -13,13 +13,14 @@ func set_feedback_text(feedback_text: String) -> void:
 func _on_visibility_changed() -> void:
 	if self.visible:
 		AudioManager.popup()
-
-		self.modulate.a = 0
+		
 		var final_pos_x = get_parent_area_size().x / 2 - self.size.x / 2
 		var tween = create_tween().set_parallel()
 
 		tween.tween_property(self, "modulate:a", 1.0, 1.0)
 		tween.tween_property(self, "global_position:x", final_pos_x, 1.0)
+		tween.tween_property(get_parent(), "modulate:a", 0.85, 1.0)
+		self.modulate.a = 0
 
 
 ## It fades itself out and move from center to right. When it's finished,
@@ -30,7 +31,7 @@ func fade_out() -> void:
 
 	tween.tween_property(self, "modulate:a", 0.0, 1.0)
 	tween.tween_property(self, "global_position:x", final_pos_x, 1.0)
-
+	tween.tween_property(get_parent(), "modulate:a", 1.0, 1.0)
 	await tween.finished
-
+	
 	self.global_position.x = 0

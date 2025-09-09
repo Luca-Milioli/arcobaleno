@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://fqf6gbptn0x2"]
 
-[ext_resource type="Script" uid="uid://ddj2ducsk8sjr" path="res://scripts/gui/components/feedback_color.gd" id="1_li5c7"]
+[ext_resource type="Script" uid="uid://rx1bsycr5hj2" path="res://scripts/gui/components/feedback_color.gd" id="1_li5c7"]
 [ext_resource type="Texture2D" uid="uid://7xcp1hg8xsn3" path="res://art/graphics/Confirm.png" id="2_cwvm3"]
 [ext_resource type="FontFile" uid="uid://by2fsotvgiu72" path="res://art/font/Roc_Grotesk_Medium.ttf" id="3_fiwei"]
 
@@ -38,6 +38,7 @@ label_settings = SubResource("LabelSettings_7yuj8")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+clip_text = true
 
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
